@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-import 'package:nft_tool_app/app/model/enums/general_enums.dart';
 
 class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
   late AnimationController? animationController;
