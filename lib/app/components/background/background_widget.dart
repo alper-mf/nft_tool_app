@@ -47,25 +47,31 @@ class _GreenGlowLight extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedPositioned(
-      duration: const Duration(milliseconds: 500),
-      top: controller.page!.value == 0 ? -50 : null,
-      right: controller.page!.value == 0 ? -50 : null,
-      bottom: controller.page!.value != 0 ? -50 : null,
-      left: controller.page!.value != 0 ? -50 : null,
-      child: Container(
-        height: 150,
-        width: 150,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.green.withOpacity(0.5),
-        ),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 150, sigmaY: 150),
-          child: Container(
-            height: 150,
-            width: 150,
-            color: Colors.transparent,
+    return Obx(
+      () => AlignTransition(
+        alignment: controller.animation,
+        child: Container(
+          height: 150,
+          width: 150,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: controller.page!.value == 0
+                ? Colors.green.withOpacity(0.5)
+                : controller.page!.value == 1
+                    ? Colors.blue.withOpacity(0.5)
+                    : controller.page!.value == 2
+                        ? Colors.yellow.withOpacity(0.5)
+                        : controller.page!.value == 3
+                            ? Colors.red.withOpacity(0.5)
+                            : Colors.transparent,
+          ),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 150, sigmaY: 150),
+            child: Container(
+              height: 150,
+              width: 150,
+              color: Colors.transparent,
+            ),
           ),
         ),
       ),

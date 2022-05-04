@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/state_manager.dart';
+import 'package:nft_tool_app/app/model/enums/general_enums.dart';
 
 class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
   late AnimationController? animationController;
@@ -15,14 +15,40 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
   Future<void> init() async {
     ///AnimationController init
     animationController = AnimationController(
+      duration: const Duration(seconds: 20),
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
-    );
+    )..repeat(reverse: true);
 
     ///PageController init
     pageController.addListener(() {
-      offset = pageController.offset.obs;
-      page = pageController.page!.obs;
+      offset!.value = pageController.offset;
+      page!.value = pageController.page!;
     });
   }
+
+  late final Animation<AlignmentGeometry> animation = Tween<AlignmentGeometry>(
+    begin: page!.value == 0
+        ? Alignment.topRight
+        : page!.value == 1
+            ? Alignment.bottomLeft
+            : page!.value == 2
+                ? Alignment.bottomCenter
+                : page!.value == 3
+                    ? Alignment.bottomRight
+                    : Alignment.topRight,
+    end: page!.value == 0
+        ? Alignment.bottomLeft
+        : page!.value == 1
+            ? Alignment.bottomCenter
+            : page!.value == 2
+                ? Alignment.bottomRight
+                : page!.value == 3
+                    ? Alignment.topRight
+                    : Alignment.bottomLeft,
+  ).animate(
+    CurvedAnimation(
+      parent: animationController!,
+      curve: Curves.slowMiddle,
+    ),
+  );
 }
