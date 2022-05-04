@@ -2,6 +2,9 @@ part of 'explore_screen_cubit.dart';
 
 @immutable
 abstract class ExploreScreenState {
+  const factory ExploreScreenState.exploreInitial() = ExploreScreenInitial;
+  const factory ExploreScreenState.exploreLoading() = ExploreScreenLoading;
+
   const ExploreScreenState();
 }
 

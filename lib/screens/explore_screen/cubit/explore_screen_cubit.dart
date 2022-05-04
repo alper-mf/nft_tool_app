@@ -9,12 +9,13 @@ class ExploreScreenCubit extends Cubit<ExploreScreenState> {
   final ExploreRepositoryController _exploreRepositoryController;
   ExploreScreenCubit(this._exploreRepositoryController) : super(const ExploreScreenInitial());
 
-  Future<void> getTokenRankList() async {
+  Future<dynamic> getTokenRankList() async {
     try {
       emit(const ExploreScreenLoading());
       await Future.delayed(const Duration(milliseconds: 500));
       final response = await _exploreRepositoryController.getList();
       emit(ExploreScreenCompleted(response));
+      return response;
     } on NetworkError catch (e) {
       emit(ExploreScreenError(e.message));
     }
