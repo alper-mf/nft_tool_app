@@ -4,6 +4,7 @@ import 'package:nft_tool_app/app/components/appbar/appbar.dart';
 import 'package:nft_tool_app/app/components/background/background_widget.dart';
 import 'package:nft_tool_app/app/components/bottom_bar/bottom_bar.dart';
 import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_controller.dart';
+import 'package:nft_tool_app/app/components/indexed_stack/animated_indexed_stack.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
 import 'package:nft_tool_app/screens/explore_screen/controller/explore_controller.dart';
 import 'package:nft_tool_app/screens/explore_screen/explore_screen.dart';
@@ -49,14 +50,14 @@ class _BuilderPagesWidget extends GetView<ExploreController> {
     return Expanded(
       child: SizedBox(
         child: Obx(
-          () => IndexedStack(
+          () => AnimatedIndexedStack(
             index: Get.find<BottomAppbarController>().page.value,
             children: [
               const ExploreScreen(),
               Container(
                 height: SizeConfig.screenHeight,
                 width: double.infinity,
-                color: Colors.black.withOpacity(0.2),
+                //color: Colors.black.withOpacity(0.2),
               ),
               Container(
                 height: SizeConfig.screenHeight,
