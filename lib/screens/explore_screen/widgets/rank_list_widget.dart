@@ -25,7 +25,8 @@ class _RankListHome extends GetView<ExploreController> {
                 child: BlocConsumer<ExploreScreenCubit, ExploreScreenState>(
                   listener: (context, state) {
                     if (state is ExploreScreenError) {
-                      Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+                      // ! - Buraya bir fikir üret.
+                      //  Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message)));
                     }
                   },
                   builder: (context, state) {
@@ -120,12 +121,26 @@ class _RankListHome extends GetView<ExploreController> {
 
   Widget buildError(ExploreScreenState state) {
     return Center(
-        child: Text(
-      'Please check your internet connection',
-      style: TextStyle(
-        color: globalTextWhiteColor,
-        fontSize: 12,
-      ),
+        child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          height: 42,
+          width: 42,
+          child: SvgPicture.asset(errorCircleIcon),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(globalPadding - 5),
+          child: Text(
+            'Please check your internet connection.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: globalTextWhiteColor,
+              fontSize: 12,
+            ),
+          ),
+        ),
+      ],
     ));
   }
 }

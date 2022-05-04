@@ -9,7 +9,7 @@ import 'package:nft_tool_app/app/model/response/error_response_model.dart';
 import 'package:nft_tool_app/app/model/response/test_model.dart';
 import 'package:nft_tool_app/core/services/http_client_service.dart';
 
-String coinRankUrl = 'https://api.opensea.io/tokedns/?format=json&limit=10';
+String coinRankUrl = 'https://api.opensea.io/tokends/?format=json&limit=10';
 String testUrl = 'https://jsonplaceholder.typicode.com/posts';
 
 class ExploreController extends GetxController with GetSingleTickerProviderStateMixin {
