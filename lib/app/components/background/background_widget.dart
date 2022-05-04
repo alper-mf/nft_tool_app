@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_controller.dart';
+import 'package:nft_tool_app/screens/home_screen/controller/home_controller.dart';
 
 class BackgroundWidget extends StatelessWidget {
   const BackgroundWidget({Key? key}) : super(key: key);
@@ -39,29 +41,38 @@ class GlassContainer extends StatelessWidget {
   }
 }
 
-class _GreenGlowLight extends StatelessWidget {
+class _GreenGlowLight extends GetView<HomeController> {
   const _GreenGlowLight({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: -50,
-      right: -50,
-      child: Container(
-        height: 150,
-        width: 150,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.green.withOpacity(0.5),
-        ),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 150, sigmaY: 150),
-          child: Container(
-            height: 150,
-            width: 150,
-            color: Colors.transparent,
+    return Obx(
+      () => AlignTransition(
+        alignment: controller.animation,
+        child: Container(
+          height: 150,
+          width: 150,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Get.find<BottomAppbarController>().page.value == 0
+                ? Colors.green.withOpacity(0.7)
+                : Get.find<BottomAppbarController>().page.value == 1
+                    ? Colors.blue.withOpacity(0.5)
+                    : Get.find<BottomAppbarController>().page.value == 2
+                        ? Colors.yellow.withOpacity(0.5)
+                        : Get.find<BottomAppbarController>().page.value == 3
+                            ? Colors.red.withOpacity(0.5)
+                            : Colors.transparent,
+          ),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 150, sigmaY: 150),
+            child: Container(
+              height: 150,
+              width: 150,
+              color: Colors.transparent,
+            ),
           ),
         ),
       ),

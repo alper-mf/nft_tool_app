@@ -12,12 +12,13 @@ class _RankListHome extends GetView<ExploreController> {
         margin: const EdgeInsets.fromLTRB(globalPadding, 0, globalPadding, 0),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.15),
+          color: cardColorDark.withOpacity(0.2),
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(generalRadius), topRight: Radius.circular(generalRadius)),
         ),
         child: BlocProvider(
-          create: (context) => ExploreScreenCubit(ExploreRepositoryController())..getTokenRankList(),
+          create: (context) =>
+              ExploreScreenCubit(ExploreRepositoryController())..getTokenRankList(),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -35,9 +36,7 @@ class _RankListHome extends GetView<ExploreController> {
                         child: Text('Screen Initial'),
                       );
                     } else if (state is ExploreScreenLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      );
+                      return const LoadingProgressWidget();
                     } else if (state is ExploreScreenCompleted) {
                       return buildListView(state);
                     } else {
@@ -67,12 +66,12 @@ class _RankListHome extends GetView<ExploreController> {
             child: ListTile(
               title: Text(
                 item.name!,
-                style: const TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14, color: globalTextWhiteColor),
                 overflow: TextOverflow.ellipsis,
               ),
-              subtitle: const Text(
+              subtitle: Text(
                 'view info',
-                style: TextStyle(fontSize: 12),
+                style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
               ),
               trailing: SizedBox(
                 width: Get.width * .21,
@@ -90,7 +89,7 @@ class _RankListHome extends GetView<ExploreController> {
                     const SizedBox(width: 5),
                     Text(
                       price.toString(),
-                      style: const TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
                     ),
                   ],
                 ),
@@ -100,7 +99,7 @@ class _RankListHome extends GetView<ExploreController> {
                 children: [
                   Text(
                     (index + 1).toString() + '. ',
-                    style: const TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
                   ),
                   const SizedBox(width: 5),
                   SizedBox(

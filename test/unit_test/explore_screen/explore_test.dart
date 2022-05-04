@@ -1,9 +1,6 @@
-import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get/get.dart';
 import 'package:nft_tool_app/app/model/response/test_model.dart';
 
-import 'package:nft_tool_app/screens/explore_screen/controller/explore_controller.dart';
 import 'package:nft_tool_app/screens/explore_screen/cubit/explore_repository.dart';
 import 'package:nft_tool_app/screens/explore_screen/cubit/explore_screen_cubit.dart';
 

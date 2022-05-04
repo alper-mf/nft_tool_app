@@ -10,5 +10,8 @@ final Color searchBarSuffixIconColor = Colors.white.withOpacity(0.7);
 final Color searchBarHintTextColor = Colors.grey.withOpacity(0.8);
 final Color searchBarTextColor = Colors.white.withOpacity(0.7);
 
+//UI Colors
+const Color cardColorDark = Color(0xFF3A3A47);
+
 //ChipList
-const Color chipDefaultColor = Color.fromARGB(55, 55, 73, 100);
+final Color chipDefaultColor = const Color(0xFF3A3A47).withOpacity(0.4);
