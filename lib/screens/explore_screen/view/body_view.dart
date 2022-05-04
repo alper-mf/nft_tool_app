@@ -12,21 +12,19 @@ class _BodyView extends GetView<ExploreController> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        height: Get.height,
-        width: Get.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: Get.height * .15),
-            const _HomeTitleWidget(),
-            SearchBarWidget(textEditingController: searchBarTextEditingController),
-            ChipList(chipList: chipList),
-            const SizedBox(height: 15),
-            const _RankListHome(),
-          ],
-        ),
+    return SizedBox(
+      height: Get.height,
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: Get.height * .15),
+          const _HomeTitleWidget(),
+          SearchBarWidget(textEditingController: searchBarTextEditingController),
+          ChipList(chipList: chipList),
+          const SizedBox(height: 15),
+          const _RankListHome(),
+        ],
       ),
     );
   }

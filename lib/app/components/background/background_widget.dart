@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nft_tool_app/screens/home_screen/controller/home_controller.dart';
 
 class BackgroundWidget extends StatelessWidget {
   const BackgroundWidget({Key? key}) : super(key: key);
@@ -39,16 +40,19 @@ class GlassContainer extends StatelessWidget {
   }
 }
 
-class _GreenGlowLight extends StatelessWidget {
+class _GreenGlowLight extends GetView<HomeController> {
   const _GreenGlowLight({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: -50,
-      right: -50,
+    return AnimatedPositioned(
+      duration: const Duration(milliseconds: 500),
+      top: controller.page!.value == 0 ? -50 : null,
+      right: controller.page!.value == 0 ? -50 : null,
+      bottom: controller.page!.value != 0 ? -50 : null,
+      left: controller.page!.value != 0 ? -50 : null,
       child: Container(
         height: 150,
         width: 150,

@@ -11,6 +11,7 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    print(controller.page!.value);
     return Scaffold(
       body: SizedBox(
         height: Get.height,
@@ -22,10 +23,23 @@ class HomeView extends GetView<HomeController> {
               height: Get.height,
               width: double.infinity,
               child: Column(
-                children: const [
-                  MyAppbar(),
-                  ExploreScreen(),
-                  BottomBar(),
+                children: [
+                  const MyAppbar(),
+                  Expanded(
+                    child: PageView(
+                      controller: controller.pageController,
+                      physics: const ClampingScrollPhysics(),
+                      children: [
+                        const ExploreScreen(),
+                        Container(
+                          height: Get.height,
+                          width: double.infinity,
+                          color: Colors.black.withOpacity(0.2),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const BottomBar(),
                 ],
               ),
             )
