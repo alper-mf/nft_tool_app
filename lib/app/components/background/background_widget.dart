@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_controller.dart';
 import 'package:nft_tool_app/screens/home_screen/controller/home_controller.dart';
 
 class BackgroundWidget extends StatelessWidget {
@@ -55,13 +56,13 @@ class _GreenGlowLight extends GetView<HomeController> {
           width: 150,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: controller.page!.value == 0
+            color: Get.find<BottomAppbarController>().page.value == 0
                 ? Colors.green.withOpacity(0.7)
-                : controller.page!.value == 1
+                : Get.find<BottomAppbarController>().page.value == 1
                     ? Colors.blue.withOpacity(0.5)
-                    : controller.page!.value == 2
+                    : Get.find<BottomAppbarController>().page.value == 2
                         ? Colors.yellow.withOpacity(0.5)
-                        : controller.page!.value == 3
+                        : Get.find<BottomAppbarController>().page.value == 3
                             ? Colors.red.withOpacity(0.5)
                             : Colors.transparent,
           ),
