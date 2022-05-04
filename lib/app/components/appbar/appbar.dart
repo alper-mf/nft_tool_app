@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
 import 'package:nft_tool_app/app/constants/padding_const.dart';
+import 'package:nft_tool_app/app/init/size_config.dart';
 
 class MyAppbar extends StatelessWidget {
   const MyAppbar({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class MyAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        height: Get.height * .075,
+        height: SizeConfig.screenHeight * .075,
         padding: const EdgeInsets.all(globalPadding),
         width: double.infinity,
         child: Row(
@@ -21,7 +22,7 @@ class MyAppbar extends StatelessWidget {
             Text(
               'NFT Tool',
               style: TextStyle(
-                fontSize: Get.height * .025,
+                fontSize: SizeConfig.screenHeight * .025,
                 color: globalTextWhiteColor.withOpacity(0.8),
               ),
             ),

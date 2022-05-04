@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:nft_tool_app/app/init/size_config.dart';
 import 'package:nft_tool_app/screens/home_screen/controller/home_controller.dart';
 import 'package:nft_tool_app/screens/home_screen/view/home_view.dart';
 
@@ -8,7 +9,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
+
     return GetBuilder(
+      autoRemove: false,
       init: HomeController(),
       builder: (_) => const HomeView(),
     );

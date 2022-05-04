@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_controller.dart';
 
 class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
@@ -19,8 +18,6 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
       duration: const Duration(seconds: 20),
       vsync: this,
     )..repeat(reverse: true);
-
-    ///PageController init
   }
 
   late final Animation<AlignmentGeometry> animation = Tween<AlignmentGeometry>(

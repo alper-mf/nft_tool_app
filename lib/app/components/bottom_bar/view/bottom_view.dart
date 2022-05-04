@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_controller.dart';
 import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/padding_const.dart';
+import 'package:nft_tool_app/app/init/size_config.dart';
 
 class BottomAppbarView extends GetView<BottomAppbarController> {
   const BottomAppbarView({
@@ -20,7 +21,7 @@ class BottomAppbarView extends GetView<BottomAppbarController> {
           Obx(
             () => Container(
               padding: const EdgeInsets.fromLTRB(globalPadding + 5, 0, globalPadding + 5, 0),
-              height: Get.height * .1,
+              height: SizeConfig.screenHeight * .1,
               width: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

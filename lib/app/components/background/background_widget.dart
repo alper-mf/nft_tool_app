@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_controller.dart';
+import 'package:nft_tool_app/app/init/size_config.dart';
 import 'package:nft_tool_app/screens/home_screen/controller/home_controller.dart';
 
 class BackgroundWidget extends StatelessWidget {
@@ -33,7 +34,7 @@ class GlassContainer extends StatelessWidget {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
       child: Container(
-        height: Get.height,
+        height: SizeConfig.screenHeight,
         width: Get.width,
         decoration: BoxDecoration(color: Colors.black.withOpacity(0.3)),
       ),
