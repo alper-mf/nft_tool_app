@@ -13,6 +13,9 @@ import 'package:nft_tool_app/app/constants/padding_const.dart';
 import 'package:nft_tool_app/app/constants/radius_const.dart';
 import 'package:nft_tool_app/app/model/response/test_model.dart';
 import 'package:nft_tool_app/screens/explore_screen/controller/explore_controller.dart';
+import 'package:nft_tool_app/screens/explore_screen/cubit/explore_repository.dart';
+import 'package:nft_tool_app/screens/explore_screen/cubit/explore_screen_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part './body_view.dart';
 part '../widgets/rank_list_widget.dart';
@@ -27,6 +30,7 @@ class ExploreView extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController searchBarTextEditingController = TextEditingController();
     List<String> chipList = ['Nft Rank List', 'Rarirty Tool', 'Trend Alert', 'MarketCap'];
+
     return Scaffold(
         body: Stack(
       children: [
