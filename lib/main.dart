@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:nft_tool_app/screens/explore_screen/explore_screen.dart';
+import 'package:nft_tool_app/app/init/router.dart';
 
 void main() {
-  runApp(GetMaterialApp(
+  runApp(GetMaterialApp.router(
     debugShowCheckedModeBanner: false,
     theme: ThemeData.dark(),
-    home: const ExploreScreen(),
+    routeInformationParser: AppRouter.router.routeInformationParser,
+    routerDelegate: AppRouter.router.routerDelegate,
   ));
 }

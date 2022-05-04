@@ -12,12 +12,13 @@ class _RankListHome extends GetView<ExploreController> {
         margin: const EdgeInsets.fromLTRB(globalPadding, 0, globalPadding, 0),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.15),
+          color: cardColorDark.withOpacity(0.2),
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(generalRadius), topRight: Radius.circular(generalRadius)),
         ),
         child: BlocProvider(
-          create: (context) => ExploreScreenCubit(ExploreRepositoryController())..getTokenRankList(),
+          create: (context) =>
+              ExploreScreenCubit(ExploreRepositoryController())..getTokenRankList(),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -35,9 +36,7 @@ class _RankListHome extends GetView<ExploreController> {
                         child: Text('Screen Initial'),
                       );
                     } else if (state is ExploreScreenLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      );
+                      return const LoadingProgressWidget();
                     } else if (state is ExploreScreenCompleted) {
                       return buildListView(state);
                     } else {
