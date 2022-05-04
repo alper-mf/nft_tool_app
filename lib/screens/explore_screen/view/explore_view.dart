@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
-import 'package:nft_tool_app/app/components/background/background_widget.dart';
-import 'package:nft_tool_app/app/components/bottom_bar/bottom_bar.dart';
 import 'package:nft_tool_app/app/components/chip_list/chip_list.dart';
 import 'package:nft_tool_app/app/components/search_bar/search_bar_view.dart';
 import 'package:nft_tool_app/app/components/slide_animation.dart';
@@ -32,23 +30,7 @@ class ExploreView extends StatelessWidget {
     final TextEditingController searchBarTextEditingController = TextEditingController();
     List<String> chipList = ['Nft Rank List', 'Rarirty Tool', 'Trend Alert', 'MarketCap'];
 
-    return Scaffold(
-        body: Stack(
-      children: [
-        const BackgroundWidget(),
-        SizedBox(
-          height: Get.height,
-          width: double.infinity,
-          child: Column(
-            children: [
-              _BodyView(
-                  searchBarTextEditingController: searchBarTextEditingController,
-                  chipList: chipList),
-              const BottomBar(),
-            ],
-          ),
-        ),
-      ],
-    ));
+    return _BodyView(
+        searchBarTextEditingController: searchBarTextEditingController, chipList: chipList);
   }
 }

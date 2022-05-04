@@ -66,12 +66,12 @@ class _RankListHome extends GetView<ExploreController> {
             child: ListTile(
               title: Text(
                 item.name!,
-                style: const TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14, color: globalTextWhiteColor),
                 overflow: TextOverflow.ellipsis,
               ),
-              subtitle: const Text(
+              subtitle: Text(
                 'view info',
-                style: TextStyle(fontSize: 12),
+                style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
               ),
               trailing: SizedBox(
                 width: Get.width * .21,
@@ -89,7 +89,7 @@ class _RankListHome extends GetView<ExploreController> {
                     const SizedBox(width: 5),
                     Text(
                       price.toString(),
-                      style: const TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
                     ),
                   ],
                 ),
@@ -99,7 +99,7 @@ class _RankListHome extends GetView<ExploreController> {
                 children: [
                   Text(
                     (index + 1).toString() + '. ',
-                    style: const TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
                   ),
                   const SizedBox(width: 5),
                   SizedBox(

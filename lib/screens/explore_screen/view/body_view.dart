@@ -19,7 +19,7 @@ class _BodyView extends GetView<ExploreController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 150),
+            SizedBox(height: Get.height * .15),
             const _HomeTitleWidget(),
             SearchBarWidget(textEditingController: searchBarTextEditingController),
             ChipList(chipList: chipList),
