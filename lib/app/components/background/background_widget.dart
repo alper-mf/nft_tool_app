@@ -16,7 +16,7 @@ class BackgroundWidget extends StatelessWidget {
       width: double.infinity,
       child: Stack(
         children: const [
-          _GreenGlowLight(),
+          _GlowingLightWidget(),
           GlassContainer(),
         ],
       ),
@@ -42,8 +42,8 @@ class GlassContainer extends StatelessWidget {
   }
 }
 
-class _GreenGlowLight extends GetView<HomeController> {
-  const _GreenGlowLight({
+class _GlowingLightWidget extends GetView<HomeController> {
+  const _GlowingLightWidget({
     Key? key,
   }) : super(key: key);
 
@@ -52,7 +52,8 @@ class _GreenGlowLight extends GetView<HomeController> {
     return Obx(
       () => AlignTransition(
         alignment: controller.animation,
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
           height: 150,
           width: 150,
           decoration: BoxDecoration(
