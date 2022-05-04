@@ -47,7 +47,7 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
   ).animate(
     CurvedAnimation(
       parent: animationController!,
-      curve: Curves.slowMiddle,
+      curve: Curves.linear,
     ),
   );
 }

@@ -56,7 +56,7 @@ class _GreenGlowLight extends GetView<HomeController> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: controller.page!.value == 0
-                ? Colors.green.withOpacity(0.5)
+                ? Colors.green.withOpacity(0.7)
                 : controller.page!.value == 1
                     ? Colors.blue.withOpacity(0.5)
                     : controller.page!.value == 2
