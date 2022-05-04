@@ -1,0 +1,19 @@
+{
+    "collections": [
+        {
+            "slug": "cryptojankyz",
+            "image_url": "https://lh3.googleusercontent.com/t2-r0kOctD_bjnl4QkcUWea3RFnUeo4gi3A5yCH1U3R8-8B-VevuXS8In0qeKomCVITW0puDRuM_sVWLjBd0ZelW5yziMzrMtlpe=s120",
+            "seven_day_volume": 20.453399999000002
+        },
+        {
+            "slug": "slacker-duck-pond",
+            "image_url": "https://lh3.googleusercontent.com/rMPPCZUt6jeDD9kYSyqKxk0R7-T8NLcEhVECaN43VwNshdWc10ORQRn8hs4Pet0Cie7WWWCexLbuSYOS9ASmn8X7RqrPlrkbiqC0=s120",
+            "seven_day_volume": 0.4375000000000001
+        },
+        {
+            "slug": "meebits",
+            "image_url": "https://lh3.googleusercontent.com/d784iHHbqQFVH1XYD6HoT4u3y_Fsu_9FZUltWjnOzoYv7qqB5dLUqpGyHBd8Gq3h4mykK5Enj8pxqOUorgD2PfIWcVj9ugvu8l0=s120",
+            "seven_day_volume": 8589.485086354262
+        }
+    ]
+}
