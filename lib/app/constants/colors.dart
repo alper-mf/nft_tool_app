@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 //General Colors
 final Color globalTextWhiteColor = Colors.white.withOpacity(0.9);
+const Color globalGreenColor = Colors.green;
 
 //Searchbar
 final Color searchBarBackgroundColor = const Color.fromARGB(255, 8, 13, 22).withOpacity(0.4);

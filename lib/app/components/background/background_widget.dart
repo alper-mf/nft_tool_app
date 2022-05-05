@@ -59,9 +59,9 @@ class _GlowingLightWidget extends GetView<HomeController> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: Get.find<BottomAppbarController>().page.value == 0
-                ? Colors.green.withOpacity(0.7)
+                ? Colors.green.withOpacity(0.9)
                 : Get.find<BottomAppbarController>().page.value == 1
-                    ? Colors.blue.withOpacity(0.5)
+                    ? Colors.blue.withOpacity(0.9)
                     : Get.find<BottomAppbarController>().page.value == 2
                         ? Colors.yellow.withOpacity(0.5)
                         : Get.find<BottomAppbarController>().page.value == 3

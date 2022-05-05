@@ -14,12 +14,12 @@ class MyAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 400),
         child: Get.find<BottomAppbarController>().page.value != 0
             ? const SizedBox()
             : SafeArea(
                 child: Container(
-                  height: SizeConfig.screenHeight * .075,
+                  height: SizeConfig.screenHeight * .085,
                   padding: const EdgeInsets.all(globalPadding),
                   width: double.infinity,
                   child: Row(

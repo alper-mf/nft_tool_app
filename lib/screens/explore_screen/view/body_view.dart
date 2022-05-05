@@ -21,7 +21,9 @@ class _BodyView extends GetView<ExploreController> {
           SizedBox(height: SizeConfig.screenHeight * .15),
           const _HomeTitleWidget(),
           SearchBarWidget(textEditingController: searchBarTextEditingController),
-          ChipList(chipList: chipList),
+          ChipList(
+            chipList: chipList,
+          ),
           const SizedBox(height: 15),
           const _RankListHome(),
         ],
