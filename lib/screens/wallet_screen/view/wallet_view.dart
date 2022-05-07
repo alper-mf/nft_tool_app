@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nft_tool_app/app/components/button/rounded_button.dart';
 import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
 import 'package:nft_tool_app/app/constants/padding_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
 import 'package:nft_tool_app/screens/wallet_screen/controller/wallet_controller.dart';
+import 'package:nft_tool_app/screens/wallet_screen/view/example_view.dart';
 
 class WalletView extends GetView<WalletController> {
   const WalletView({Key? key}) : super(key: key);
@@ -41,7 +43,10 @@ class WalletView extends GetView<WalletController> {
             ),
             CRoundedButton(
               kHeight: SizeConfig.screenHeight * .06,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MyHomePage(title: 'Test')));
+              },
               widget: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
