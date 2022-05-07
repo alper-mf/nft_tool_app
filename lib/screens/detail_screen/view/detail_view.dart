@@ -33,13 +33,7 @@ class DetailView extends StatelessWidget {
                   height: SizeConfig.screenHeight * .03,
                 ),
                 const _TopInfoCard(),
-                SizedBox(
-                  height: SizeConfig.screenHeight * .03,
-                ),
-                const ChipList(
-                  chipList: ['1d', '1w', '1m', '3g', '6m', '1y'],
-                  backgroundColor: Colors.transparent,
-                ),
+                SizedBox(height: SizeConfig.screenHeight * .03),
                 const DetailChart()
               ],
             )),

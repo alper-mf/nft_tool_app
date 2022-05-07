@@ -7,41 +7,50 @@ class DetailChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: SizeConfig.screenHeight * .25,
-      width: double.infinity,
-      child: CustomPaint(
-        painter: BacgroundPaint(),
-        child: LineChart(
-          LineChartData(
-            //Arkaplandaki gridleri kapatır
-            gridData: FlGridData(show: false),
-            clipData: FlClipData.all(),
-            titlesData: FlTitlesData(show: false),
-            minX: 0,
-            maxX: 11,
-            minY: 0,
-            maxY: 6,
-            lineBarsData: [
-              LineChartBarData(
-                  spots: const [
-                    FlSpot(0, 3),
-                    FlSpot(2.6, 2),
-                    FlSpot(4, 3),
-                    FlSpot(5, 1),
-                    FlSpot(6, 2),
-                    FlSpot(7, 2),
-                    FlSpot(9, 4),
-                    FlSpot(10, 3),
-                    FlSpot(11, 5),
-                  ],
-                  isCurved: false,
-                  color: Colors.green.withOpacity(0.8),
-                  dotData: FlDotData(show: false))
-            ],
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const ChipList(
+          chipList: ['1d', '1w', '1m', '3g', '6m', '1y'],
+          backgroundColor: Colors.transparent,
+        ),
+        SizedBox(
+          height: SizeConfig.screenHeight * .25,
+          width: double.infinity,
+          child: CustomPaint(
+            painter: BacgroundPaint(),
+            child: LineChart(
+              LineChartData(
+                //Arkaplandaki gridleri kapatır
+                gridData: FlGridData(show: false),
+                clipData: FlClipData.all(),
+                titlesData: FlTitlesData(show: false),
+                minX: 0,
+                maxX: 11,
+                minY: 0,
+                maxY: 6,
+                lineBarsData: [
+                  LineChartBarData(
+                      spots: const [
+                        FlSpot(0, 3),
+                        FlSpot(2.6, 2),
+                        FlSpot(4, 3),
+                        FlSpot(5, 1),
+                        FlSpot(6, 2),
+                        FlSpot(7, 2),
+                        FlSpot(9, 4),
+                        FlSpot(10, 3),
+                        FlSpot(11, 5),
+                      ],
+                      isCurved: false,
+                      color: Colors.green.withOpacity(0.8),
+                      dotData: FlDotData(show: false))
+                ],
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
