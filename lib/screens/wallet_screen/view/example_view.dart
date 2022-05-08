@@ -681,7 +681,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: Text(
+              child: const Text(
                 'Sign Message',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -695,7 +695,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: ExpansionTile(
                   tilePadding: EdgeInsets.zero,
-                  title: Text(
+                  title: const Text(
                     'Message',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -705,7 +705,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     Text(
                       decoded,
-                      style: TextStyle(fontSize: 16.0),
+                      style: const TextStyle(fontSize: 16.0),
                     ),
                   ],
                 ),

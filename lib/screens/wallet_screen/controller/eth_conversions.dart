@@ -29,8 +29,7 @@ class EthConversions {
   static BigInt ethToWei(String amount, int? decimal) {
     double db = double.parse(amount) * pow(10, 4);
     int it = db.toInt();
-    BigInt bi = BigInt.from(it) *
-        BigInt.from(10).pow(decimal == null ? 14 : decimal - 4);
+    BigInt bi = BigInt.from(it) * BigInt.from(10).pow(decimal == null ? 14 : decimal - 4);
     return bi;
   }
 }
