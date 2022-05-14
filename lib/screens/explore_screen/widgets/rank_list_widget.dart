@@ -87,9 +87,11 @@ class _RankListHome extends GetView<ExploreController> {
                           color: Colors.white.withOpacity(0.5),
                         )),
                     const SizedBox(width: 5),
-                    Text(
-                      price.toString(),
-                      style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
+                    Expanded(
+                      child: Text(
+                        price.toString(),
+                        style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
+                      ),
                     ),
                   ],
                 ),

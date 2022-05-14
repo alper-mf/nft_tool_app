@@ -21,7 +21,7 @@ class BottomAppbarView extends GetView<BottomAppbarController> {
           Obx(
             () => Container(
               padding: const EdgeInsets.fromLTRB(globalPadding + 5, 0, globalPadding + 5, 0),
-              height: SizeConfig.screenHeight * .1,
+              height: SizeConfig.height * .1,
               width: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

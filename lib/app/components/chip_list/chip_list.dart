@@ -17,7 +17,7 @@ class ChipList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeConfig.screenHeight * .05,
+      height: SizeConfig.height * .05,
       child: ListView.builder(
         shrinkWrap: true,
         padding: const EdgeInsets.only(left: 15),

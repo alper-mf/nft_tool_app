@@ -13,12 +13,12 @@ class _BodyView extends GetView<ExploreController> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeConfig.screenHeight,
+      height: SizeConfig.height,
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: SizeConfig.screenHeight * .15),
+          SizedBox(height: SizeConfig.height * .15),
           const _HomeTitleWidget(),
           SearchBarWidget(textEditingController: searchBarTextEditingController),
           ChipList(

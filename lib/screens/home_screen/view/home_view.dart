@@ -18,13 +18,13 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
-        height: SizeConfig.screenHeight,
+        height: SizeConfig.height,
         width: double.infinity,
         child: Stack(
           children: [
             const BackgroundWidget(),
             SizedBox(
-              height: SizeConfig.screenHeight,
+              height: SizeConfig.height,
               width: double.infinity,
               child: Column(
                 children: const [
@@ -57,12 +57,12 @@ class _BuilderPagesWidget extends GetView<ExploreController> {
               const ExploreScreen(),
               const DetailScreen(),
               Container(
-                height: SizeConfig.screenHeight,
+                height: SizeConfig.height,
                 width: double.infinity,
                 color: Colors.black.withOpacity(0.2),
               ),
               Container(
-                height: SizeConfig.screenHeight,
+                height: SizeConfig.height,
                 width: double.infinity,
                 color: Colors.black.withOpacity(0.2),
               ),

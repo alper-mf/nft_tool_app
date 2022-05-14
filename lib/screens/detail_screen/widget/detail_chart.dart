@@ -15,7 +15,7 @@ class DetailChart extends StatelessWidget {
           backgroundColor: Colors.transparent,
         ),
         SizedBox(
-          height: SizeConfig.screenHeight * .25,
+          height: SizeConfig.height * .25,
           width: double.infinity,
           child: CustomPaint(
             painter: BacgroundPaint(),
@@ -68,8 +68,8 @@ class BacgroundPaint extends CustomPainter {
       Colors.grey.withOpacity(0.2),
       Colors.transparent,
     ]).createShader(Rect.fromCircle(
-      center: Offset(SizeConfig.screenWidth / 2.1, SizeConfig.screenWidth / 2 * 3 / 7),
-      radius: SizeConfig.screenWidth / 1.8,
+      center: Offset(SizeConfig.width / 2.1, SizeConfig.width / 2 * 3 / 7),
+      radius: SizeConfig.width / 1.8,
     ));
 
     final heightLine = height ~/ 8; // your Horizontal line
