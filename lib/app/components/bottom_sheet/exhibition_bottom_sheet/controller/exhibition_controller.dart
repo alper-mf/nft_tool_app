@@ -22,9 +22,11 @@ class ExhibitionSheetController extends GetxController with GetTickerProviderSta
     currentContext = context!;
   }
 
-  double get maxHeight => SizeConfig.height;
-
   double? lerp(double min, double max) => lerpDouble(min, max, animationController.value);
+  double get maxHeight => SizeConfig.height;
+  double get iconLeftBorderRadius => itemBorderRadius!;
+  double get iconRightBorderRadius => lerp(8, 0)!;
+
   double? get headerTopMargin =>
       lerp(20, 20 + MediaQuery.of(currentContext).padding.top); //<-- Add new property
 
