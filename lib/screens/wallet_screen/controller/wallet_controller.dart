@@ -1,41 +1,109 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
-import 'package:wallet_connect/wallet_connect.dart';
+import 'package:nft_tool_app/app/model/enums/wallet_enums.dart';
+import 'package:nft_tool_app/screens/wallet_screen/controller/account_state.dart';
+import 'package:nft_tool_app/utils/url_scheme_utils.dart';
+
+import 'package:walletconnect_dart/walletconnect_dart.dart';
+import 'package:walletconnect_secure_storage/walletconnect_secure_storage.dart';
 
 class WalletController extends GetxController {
-  final String projectId = '9a300a1ae4ef3d59d0cbeeea2df31af4';
-  final String wmServerUrl = '';
+  final AccountState state = AccountState();
+  final metamask = "MetaMask".obs;
+  final rainbow = "Rainbow".obs;
+  final trust = "Trust".obs;
+  final authToken = "Twitter".obs;
 
-  late final wcClient = WCClient(
-    onConnect: () {
-      final session = WCSession.from(
-          'wc:8a5e5bdc-a0e4-4702-ba63-8f1a5655744f@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=41791102999c339c844880b23950704cc43aa840f3739e365323cda4dfa89e7a');
+  late WalletConnect? connector;
+  late SessionStatus? currentSession;
+  Wallet? currentWallet;
+  WalletController() {
+    createConnector();
+  }
 
-      final peerMeta = WCPeerMeta(
-        name: 'WalletConnect Developer App',
-        url: 'https://walletconnect.org',
-        description: 'Wallet Connect',
-        icons: ['https://walletconnect.org/walletconnect-logo.png'],
+  // Create a connector
+  void createConnector() async {
+    if (connector == null) {
+      final sessionStorage = WalletConnectSecureStorage();
+      final session = await sessionStorage.getSession();
+
+      connector = WalletConnect(
+        bridge: 'https://bridge.walletconnect.org',
+        // session: session,
+        // sessionStorage: sessionStorage,
+        clientMeta: PeerMeta(
+          name: 'WalletConnect',
+          description: 'WalletConnect Developer App',
+          url: 'https://walletconnect.org',
+          icons: [
+            'https://gblobscdn.gitbook.com/spaces%2F-LJJeCjcLrr53DcT1Ml7%2Favatar.png?alt=media'
+          ],
+        ),
       );
 
-      wcClient.connectNewSession(session: session, peerMeta: peerMeta);
-    },
-    onDisconnect: (code, reason) {
-      // Respond to disconnect callback
-    },
-    onFailure: (error) {
-      // Respond to connection failure callback
-    },
-    onSessionRequest: (id, peerMeta) {
-      // Respond to connection request callback
-    },
-    onEthSign: (id, message) {
-      // Respond to personal_sign or eth_sign or eth_signTypedData request callback
-    },
-    onEthSendTransaction: (id, tx) {
-      // Respond to eth_sendTransaction request callback
-    },
-    onEthSignTransaction: (id, tx) {
-      // Respond to eth_signTransaction request callback
-    },
-  );
+      // Subscribe to events
+      connector?.on('connect', (session) {
+        print("connect\nsession = $session");
+        if (session is SessionStatus) {
+          if (currentWallet == Wallet.rainbow) {
+            rainbow.value = session.accounts.first;
+          } else if (currentWallet == Wallet.metamask) {
+            metamask.value = session.accounts.first;
+          } else {
+            trust.value = session.accounts.first;
+          }
+        }
+      });
+      connector?.on('session_update', (payload) {
+        print("session_update\npayload = $payload");
+      });
+      connector?.on('disconnect', (session) {
+        print("disconnect\nsession = $session");
+      });
+    }
+  }
+
+  //Create a new session
+  //Create a new session between the dApp and wallet.
+  void connect(Wallet wallet) async {
+    currentWallet = wallet;
+    String deeplink = "";
+    switch (wallet) {
+      case Wallet.rainbow:
+        deeplink = "rainbow://wc?uri=";
+        break;
+      case Wallet.metamask:
+        deeplink = "metamask://wc?uri=";
+        break;
+      case Wallet.trust:
+        deeplink = "trust://wc?uri=";
+        break;
+    }
+    if (Platform.isAndroid) {
+      deeplink = "";
+    }
+    if (!(connector?.connected ?? false)) {
+      currentSession = await connector?.createSession(
+        chainId: 4160,
+        onDisplayUri: (uri) {
+          uri = deeplink + uri;
+          URLSchemeUntils.openOtherApp(uri);
+        },
+      );
+    } else {
+      disConnect();
+    }
+  }
+
+  void disConnect() async {
+    if ((connector?.connected ?? false)) {
+      connector?.close(forceClose: true);
+      connector = null;
+      createConnector();
+      metamask.value = "metamask";
+      rainbow.value = "rainbow";
+      trust.value = "trust";
+    }
+  }
 }

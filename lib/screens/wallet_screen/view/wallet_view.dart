@@ -7,8 +7,8 @@ import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
 import 'package:nft_tool_app/app/constants/padding_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
+import 'package:nft_tool_app/app/model/enums/wallet_enums.dart';
 import 'package:nft_tool_app/screens/wallet_screen/controller/wallet_controller.dart';
-import 'package:nft_tool_app/screens/wallet_screen/view/example_view.dart';
 
 class WalletView extends GetView<WalletController> {
   const WalletView({Key? key}) : super(key: key);
@@ -44,8 +44,7 @@ class WalletView extends GetView<WalletController> {
             CRoundedButton(
               kHeight: SizeConfig.screenHeight * .06,
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyHomePage(title: 'Test')));
+                controller.connect(Wallet.metamask);
               },
               widget: Row(
                 mainAxisSize: MainAxisSize.min,
