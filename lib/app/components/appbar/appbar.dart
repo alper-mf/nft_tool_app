@@ -19,7 +19,7 @@ class MyAppbar extends StatelessWidget {
             ? const SizedBox()
             : SafeArea(
                 child: Container(
-                  height: SizeConfig.screenHeight * .075,
+                  height: SizeConfig.height * .075,
                   padding: const EdgeInsets.all(globalPadding),
                   width: double.infinity,
                   child: Row(
@@ -28,8 +28,8 @@ class MyAppbar extends StatelessWidget {
                       Text(
                         'NFT Tool',
                         style: TextStyle(
-                          fontSize: SizeConfig.screenHeight * .025,
-                          color: globalTextWhiteColor.withOpacity(0.8),
+                          fontSize: SizeConfig.height * .025,
+                          color: defaultTextWhitecolor.withOpacity(0.8),
                         ),
                       ),
                       SizedBox(
@@ -37,7 +37,7 @@ class MyAppbar extends StatelessWidget {
                         width: 24,
                         child: SvgPicture.asset(
                           menuIcon,
-                          color: globalTextWhiteColor.withOpacity(0.8),
+                          color: defaultTextWhitecolor.withOpacity(0.8),
                         ),
                       )
                     ],

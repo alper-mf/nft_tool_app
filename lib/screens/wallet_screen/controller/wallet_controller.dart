@@ -1,8 +1,13 @@
+import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nft_tool_app/app/dialogs/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:nft_tool_app/app/model/enums/wallet_enums.dart';
 import 'package:nft_tool_app/screens/wallet_screen/controller/account_state.dart';
+import 'package:nft_tool_app/screens/wallet_screen/widget/select_wallet.dart';
 import 'package:nft_tool_app/utils/url_scheme_utils.dart';
 
 import 'package:walletconnect_dart/walletconnect_dart.dart';
@@ -10,41 +15,46 @@ import 'package:walletconnect_secure_storage/walletconnect_secure_storage.dart';
 
 class WalletController extends GetxController {
   final AccountState state = AccountState();
+  final GlobalKey scaffoldKey = GlobalKey<ScaffoldState>();
+
   final metamask = "MetaMask".obs;
   final rainbow = "Rainbow".obs;
   final trust = "Trust".obs;
-  final authToken = "Twitter".obs;
 
-  late WalletConnect? connector;
+  late final WalletConnect? connector;
   late SessionStatus? currentSession;
-  Wallet? currentWallet;
-  WalletController() {
+  final sessionStorage = WalletConnectSecureStorage();
+  Wallet? currentWallet; //-> Enum
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    connector = WalletConnect(
+      bridge: 'https://bridge.walletconnect.org',
+      // session: session,
+      // sessionStorage: sessionStorage,
+      clientMeta: const PeerMeta(
+        name: 'WalletConnect',
+        description: 'WalletConnect Developer App',
+        url: 'https://walletconnect.org',
+        icons: [
+          'https://gblobscdn.gitbook.com/spaces%2F-LJJeCjcLrr53DcT1Ml7%2Favatar.png?alt=media'
+        ],
+      ),
+    );
     createConnector();
   }
 
   // Create a connector
-  void createConnector() async {
+  Future<void> createConnector() async {
     if (connector == null) {
-      final sessionStorage = WalletConnectSecureStorage();
       final session = await sessionStorage.getSession();
-
-      connector = WalletConnect(
-        bridge: 'https://bridge.walletconnect.org',
-        // session: session,
-        // sessionStorage: sessionStorage,
-        clientMeta: PeerMeta(
-          name: 'WalletConnect',
-          description: 'WalletConnect Developer App',
-          url: 'https://walletconnect.org',
-          icons: [
-            'https://gblobscdn.gitbook.com/spaces%2F-LJJeCjcLrr53DcT1Ml7%2Favatar.png?alt=media'
-          ],
-        ),
-      );
 
       // Subscribe to events
       connector?.on('connect', (session) {
-        print("connect\nsession = $session");
+        log("connect\nsession ------->>>>> = $session");
+
         if (session is SessionStatus) {
           if (currentWallet == Wallet.rainbow) {
             rainbow.value = session.accounts.first;
@@ -56,11 +66,30 @@ class WalletController extends GetxController {
         }
       });
       connector?.on('session_update', (payload) {
-        print("session_update\npayload = $payload");
+        if (kDebugMode) {
+          print("session_update\npayload = $payload");
+        }
       });
       connector?.on('disconnect', (session) {
-        print("disconnect\nsession = $session");
+        if (kDebugMode) {
+          print("disconnect\nsession = $session");
+        }
       });
+    }
+  }
+
+  void showIosWalletDialog() {
+    if (Platform.isAndroid) {
+      CBottomSheet.show(
+        scaffoldKey.currentContext!,
+        const SelectWalletSheet(),
+      );
+      //connect(Wallet.rainbow);
+    } else {
+      CBottomSheet.show(
+        scaffoldKey.currentContext!,
+        const SelectWalletSheet(),
+      );
     }
   }
 
@@ -69,20 +98,25 @@ class WalletController extends GetxController {
   void connect(Wallet wallet) async {
     currentWallet = wallet;
     String deeplink = "";
-    switch (wallet) {
-      case Wallet.rainbow:
-        deeplink = "rainbow://wc?uri=";
-        break;
-      case Wallet.metamask:
-        deeplink = "metamask://wc?uri=";
-        break;
-      case Wallet.trust:
-        deeplink = "trust://wc?uri=";
-        break;
-    }
+
     if (Platform.isAndroid) {
       deeplink = "";
     }
+    switch (wallet) {
+      case Wallet.rainbow:
+        log('RAINBOW');
+        deeplink = "rainbow://wc?uri=";
+        break;
+      case Wallet.metamask:
+        log('METAMASK');
+        deeplink = "metamask://wc?uri=";
+        break;
+      case Wallet.trust:
+        log('WALLET TRUST');
+        deeplink = "trust://wc?uri=";
+        break;
+    }
+
     if (!(connector?.connected ?? false)) {
       currentSession = await connector?.createSession(
         chainId: 4160,
@@ -92,8 +126,11 @@ class WalletController extends GetxController {
         },
       );
     } else {
+      log(' --------> HATA');
       disConnect();
     }
+
+    log('ACCOUNT ADRESS' + currentSession!.accounts[0]);
   }
 
   void disConnect() async {

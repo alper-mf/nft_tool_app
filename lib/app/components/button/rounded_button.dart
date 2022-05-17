@@ -10,6 +10,7 @@ class CRoundedButton extends StatelessWidget {
   final VoidCallback onTap;
   final double? borderRadius;
   final double kHeight;
+  final double? kWidth;
   const CRoundedButton({
     Key? key,
     this.isDisabled,
@@ -17,6 +18,7 @@ class CRoundedButton extends StatelessWidget {
     this.color,
     this.title,
     this.widget,
+    this.kWidth,
     this.borderRadius,
     required this.kHeight,
     required this.onTap,
@@ -26,6 +28,7 @@ class CRoundedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: kHeight,
+      width: kWidth,
       child: ElevatedButton(
           onPressed: onTap,
           style: ButtonStyle(

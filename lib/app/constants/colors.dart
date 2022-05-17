@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 //General Colors
-final Color globalTextWhiteColor = Colors.white.withOpacity(0.9);
+final Color defaultTextWhitecolor = Colors.white.withOpacity(0.9);
+final Color whiteColor = Colors.white.withOpacity(0.9);
 final Color lightGrey = Colors.grey.withOpacity(0.5);
 const Color greenColor = Colors.green;
 
@@ -17,3 +18,6 @@ const Color cardColorDark = Color(0xFF3A3A47);
 
 //ChipList
 final Color chipDefaultColor = const Color(0xFF3A3A47).withOpacity(0.4);
+
+//WalletScreen
+const Color selectWalletButtonColor = Color.fromARGB(255, 0, 204, 255);

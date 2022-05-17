@@ -66,12 +66,12 @@ class _RankListHome extends GetView<ExploreController> {
             child: ListTile(
               title: Text(
                 item.name!,
-                style: TextStyle(fontSize: 14, color: globalTextWhiteColor),
+                style: TextStyle(fontSize: 14, color: defaultTextWhitecolor),
                 overflow: TextOverflow.ellipsis,
               ),
               subtitle: Text(
                 'view info',
-                style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
+                style: TextStyle(fontSize: 12, color: defaultTextWhitecolor),
               ),
               trailing: SizedBox(
                 width: Get.width * .21,
@@ -89,7 +89,7 @@ class _RankListHome extends GetView<ExploreController> {
                     const SizedBox(width: 5),
                     Text(
                       price.toString(),
-                      style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
+                      style: TextStyle(fontSize: 12, color: defaultTextWhitecolor),
                     ),
                   ],
                 ),
@@ -99,7 +99,7 @@ class _RankListHome extends GetView<ExploreController> {
                 children: [
                   Text(
                     (index + 1).toString() + '. ',
-                    style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
+                    style: TextStyle(fontSize: 12, color: defaultTextWhitecolor),
                   ),
                   const SizedBox(width: 5),
                   SizedBox(
@@ -134,7 +134,7 @@ class _RankListHome extends GetView<ExploreController> {
             'Please check your internet connection.',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: globalTextWhiteColor,
+              color: defaultTextWhitecolor,
               fontSize: 12,
             ),
           ),

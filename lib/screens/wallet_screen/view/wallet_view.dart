@@ -7,7 +7,6 @@ import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
 import 'package:nft_tool_app/app/constants/padding_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
-import 'package:nft_tool_app/app/model/enums/wallet_enums.dart';
 import 'package:nft_tool_app/screens/wallet_screen/controller/wallet_controller.dart';
 
 class WalletView extends GetView<WalletController> {
@@ -16,10 +15,11 @@ class WalletView extends GetView<WalletController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: controller.scaffoldKey,
       backgroundColor: Colors.transparent,
       body: Container(
         padding: const EdgeInsets.all(globalPadding),
-        height: SizeConfig.screenHeight,
+        height: SizeConfig.height,
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,8 +27,8 @@ class WalletView extends GetView<WalletController> {
           mainAxisSize: MainAxisSize.max,
           children: [
             SizedBox(
-              height: SizeConfig.screenHeight * .15,
-              width: SizeConfig.screenHeight * .15,
+              height: SizeConfig.height * .15,
+              width: SizeConfig.height * .15,
               child: SvgPicture.asset(walletIcon),
             ),
             const Padding(
@@ -39,25 +39,23 @@ class WalletView extends GetView<WalletController> {
               ),
             ),
             SizedBox(
-              height: SizeConfig.screenHeight * .05,
+              height: SizeConfig.height * .05,
             ),
             CRoundedButton(
-              kHeight: SizeConfig.screenHeight * .06,
-              onTap: () {
-                controller.connect(Wallet.metamask);
-              },
+              kHeight: SizeConfig.height * .06,
+              onTap: controller.showIosWalletDialog,
               widget: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(
                     Icons.shield,
                     size: Get.height * .03,
-                    color: globalTextWhiteColor,
+                    color: defaultTextWhitecolor,
                   ),
-                  SizedBox(width: SizeConfig.screenWidth * .02),
+                  SizedBox(width: SizeConfig.width * .02),
                   Text(
                     'Cüzdanımı Bağla',
-                    style: TextStyle(color: globalTextWhiteColor),
+                    style: TextStyle(color: defaultTextWhitecolor),
                   ),
                 ],
               ),
