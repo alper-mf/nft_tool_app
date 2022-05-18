@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:nft_tool_app/app/init/size_config.dart';
 
 class CBottomSheet {
   static show(
@@ -16,29 +15,28 @@ class CBottomSheet {
         maxWidth: double.infinity,
       ),
       builder: (BuildContext context) {
-        return ClipRRect(
-          borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(20),
-          ),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.2),
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(20),
-                ),
+        return Container(
+          margin: const EdgeInsets.all(8),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 20.0,
+                sigmaY: 20.0,
               ),
-              child: Padding(
-                padding: MediaQuery.of(context).viewInsets,
-                child: widget ??
-                    SizedBox(
-                      height: SizeConfig.height / 2,
-                      child: const Center(
-                        child: Text('Not added any widget from here'),
-                      ),
-                    ),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white12,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  border: Border.all(
+                    color: Colors.black26,
+                    width: 0.5,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: widget,
+                ),
               ),
             ),
           ),
@@ -47,5 +45,31 @@ class CBottomSheet {
     ).whenComplete(() {
       // Get.find<LoginController>().cPhone.value.clear();
     });
+  }
+}
+
+class GlassWidget extends StatelessWidget {
+  final double sigma;
+  final double radius;
+  final Widget widget;
+  const GlassWidget({
+    Key? key,
+    required this.sigma,
+    required this.radius,
+    required this.widget,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(radius)),
+      child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: sigma, sigmaY: sigma),
+          child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              decoration:
+                  BoxDecoration(color: Colors.white12, borderRadius: BorderRadius.circular(radius)),
+              child: widget)),
+    );
   }
 }

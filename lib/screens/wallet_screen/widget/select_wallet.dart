@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:nft_tool_app/app/components/button/rounded_button.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
@@ -17,7 +18,7 @@ class SelectWalletSheet extends GetView<WalletController> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
+        const Text(
           'Cüzdan Seç',
           textAlign: TextAlign.center,
         ),
@@ -63,32 +64,23 @@ class _WalletButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CRoundedButton(
-      kHeight: 50,
-      borderRadius: 15,
+    return InkWell(
       onTap: tap,
-      color: selectWalletButtonColor,
-      widget: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              const SizedBox(
-                height: 32,
-                width: 32,
-                child: Placeholder(),
-              ),
-              SizedBox(
-                width: SizeConfig.width * .02,
-              ),
-              Text(walletTitle),
-            ],
+      child: ListTile(
+        visualDensity: VisualDensity.standard,
+        minLeadingWidth: 10,
+        leading: Container(
+          height: 24,
+          width: 24,
+          margin: EdgeInsets.only(top: SizeConfig.height * .01),
+          child: const Placeholder(
+            color: Colors.white,
           ),
-          Icon(
-            CupertinoIcons.forward,
-            color: whiteColor,
-          ),
-        ],
+        ),
+        title: Text(walletTitle),
+        subtitle: const Text(
+          'Select',
+        ),
       ),
     );
   }
