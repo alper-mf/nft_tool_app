@@ -1,10 +1,8 @@
 import 'package:get/get.dart';
 import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_controller.dart';
 
-/**
- * Servislerin initialize edildiği yer
- * [ParametersController] tüm ekranlarda kullanıldığı için burada Init edildi.
- */
+/// Servislerin initialize edildiği yer
+/// [ParametersController] tüm ekranlarda kullanıldığı için burada Init edildi.
 class InitServices extends Bindings {
   @override
   Future<void> dependencies() async {

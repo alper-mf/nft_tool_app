@@ -1,1 +1,1 @@
-const double globalPadding = 15;
+const double globalPadding = 20;

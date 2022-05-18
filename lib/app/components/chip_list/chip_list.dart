@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
+import 'package:nft_tool_app/app/init/size_config.dart';
 
 class ChipList extends StatelessWidget {
+  final Color? selectedColor;
+  final Color? backgroundColor;
   const ChipList({
     Key? key,
     required this.chipList,
+    this.selectedColor,
+    this.backgroundColor,
   }) : super(key: key);
 
   final List<String> chipList;
@@ -12,7 +17,7 @@ class ChipList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: SizeConfig.height * .05,
       child: ListView.builder(
         shrinkWrap: true,
         padding: const EdgeInsets.only(left: 15),
@@ -25,6 +30,7 @@ class ChipList extends StatelessWidget {
             child: _ChipWidget(
               text: item,
               index: index,
+              color: backgroundColor,
             ),
           );
         },
@@ -36,7 +42,9 @@ class ChipList extends StatelessWidget {
 class _ChipWidget extends StatelessWidget {
   final String? text;
   final int? index;
-  const _ChipWidget({Key? key, this.text, this.index}) : super(key: key);
+  final Color? color;
+  const _ChipWidget({Key? key, this.text, this.index, this.color = Colors.transparent})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +57,7 @@ class _ChipWidget extends StatelessWidget {
         ),
       ),
       decoration: BoxDecoration(
-        color: index! == 0 ? Colors.green : chipDefaultColor,
+        color: index! == 2 ? Colors.green : color ?? chipDefaultColor,
         borderRadius: BorderRadius.circular(10),
       ),
     );
