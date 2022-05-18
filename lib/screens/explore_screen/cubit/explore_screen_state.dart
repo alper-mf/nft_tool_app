@@ -21,6 +21,7 @@ class ExploreScreenCompleted extends ExploreScreenState {
   const ExploreScreenCompleted(this.response);
 
   @override
+  // ignore: avoid_renaming_method_parameters
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 

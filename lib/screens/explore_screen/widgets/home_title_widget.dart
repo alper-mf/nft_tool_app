@@ -12,7 +12,7 @@ class _HomeTitleWidget extends StatelessWidget {
       child: Text(
         'Explore Collection',
         style: TextStyle(
-          fontSize: Get.width * .095,
+          fontSize: Get.width * .085,
           fontWeight: FontWeight.w500,
           color: defaultTextWhitecolor.withOpacity(0.8),
         ),
