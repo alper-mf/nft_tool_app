@@ -25,7 +25,7 @@ class _TopInfoCard extends StatelessWidget {
                 padding: EdgeInsets.all(SizeConfig.height * .013),
                 child: SvgPicture.asset(
                   ethIcon,
-                  color: globalTextWhiteColor.withOpacity(0.8),
+                  color: defaultTextWhitecolor.withOpacity(0.8),
                 ),
               ),
             ),
@@ -37,7 +37,7 @@ class _TopInfoCard extends StatelessWidget {
                   'Bored Ape Yacht Club',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: globalTextWhiteColor,
+                    color: defaultTextWhitecolor,
                     fontWeight: FontWeight.w500,
                     fontSize: SizeConfig.width * .035,
                   ),
@@ -48,7 +48,7 @@ class _TopInfoCard extends StatelessWidget {
                 Text(
                   'APE',
                   style: TextStyle(
-                    color: globalTextWhiteColor.withOpacity(0.5),
+                    color: defaultTextWhitecolor.withOpacity(0.5),
                     fontWeight: FontWeight.w500,
                     fontSize: SizeConfig.width * .035,
                   ),
@@ -64,7 +64,7 @@ class _TopInfoCard extends StatelessWidget {
               '\$14.250,00',
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                color: globalTextWhiteColor,
+                color: defaultTextWhitecolor,
                 fontWeight: FontWeight.w500,
                 fontSize: SizeConfig.width * .035,
               ),
@@ -75,7 +75,7 @@ class _TopInfoCard extends StatelessWidget {
             Text(
               '%2.20',
               style: TextStyle(
-                color: globalTextWhiteColor.withOpacity(0.5),
+                color: defaultTextWhitecolor.withOpacity(0.5),
                 fontWeight: FontWeight.w500,
                 fontSize: SizeConfig.width * .035,
               ),
