@@ -60,11 +60,6 @@ class _BuilderPagesWidget extends GetView<ExploreController> {
               Container(
                 height: SizeConfig.height,
                 width: double.infinity,
-                //color: Colors.black.withOpacity(0.2),
-              ),
-              Container(
-                height: SizeConfig.height,
-                width: double.infinity,
                 color: Colors.black.withOpacity(0.2),
               ),
               const WalletScreen(),
