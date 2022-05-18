@@ -11,8 +11,12 @@ const String prizeIcon = _assets + _iconsApp + 'prize_icon.svg';
 const String settingsIcon = _assets + _iconsApp + 'settings_icon.svg';
 const String statsIcon = _assets + _iconsApp + 'stats_icon.svg';
 const String walletIcon = _assets + _iconsApp + 'wallet_icon.svg';
+const String walletIconMini = _assets + _iconsApp + 'wallet_icon_mini.svg';
 const String errorCircleIcon = _assets + _iconsApp + 'error_circle_icon.svg';
 const String menuIcon = _assets + _iconsApp + 'menu_icon.svg';
+const String metamaskOutlined = _assets + _iconsApp + 'metamask_outlined.svg';
+const String trustWalletOutlined = _assets + _iconsApp + 'shield_icon.svg';
+const String rainbowWalletOutlined = _assets + _iconsApp + 'rainbow_icon.svg';
 
 //SVG ICONS - Crypto
 

@@ -14,7 +14,7 @@ class _HomeTitleWidget extends StatelessWidget {
         style: TextStyle(
           fontSize: Get.width * .085,
           fontWeight: FontWeight.w500,
-          color: globalTextWhiteColor.withOpacity(0.8),
+          color: defaultTextWhitecolor.withOpacity(0.8),
         ),
       ),
     );

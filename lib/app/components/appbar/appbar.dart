@@ -29,7 +29,7 @@ class MyAppbar extends StatelessWidget {
                         'NFT Tool',
                         style: TextStyle(
                           fontSize: SizeConfig.height * .025,
-                          color: globalTextWhiteColor.withOpacity(0.8),
+                          color: defaultTextWhitecolor.withOpacity(0.8),
                         ),
                       ),
                       SizedBox(
@@ -37,7 +37,7 @@ class MyAppbar extends StatelessWidget {
                         width: 24,
                         child: SvgPicture.asset(
                           menuIcon,
-                          color: globalTextWhiteColor.withOpacity(0.8),
+                          color: defaultTextWhitecolor.withOpacity(0.8),
                         ),
                       )
                     ],
