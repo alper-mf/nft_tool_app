@@ -13,8 +13,7 @@ class WalletTexts {
 
   static const String backToHomePage = 'Back to home screen';
 
-  static const String walletScreenInitText =
-      'Özgür finansman dünyasına girmen için\n sadece bir adım kaldı.';
+  static const String walletScreenInitText = 'One step left to enter the world of\n free finance.';
 
   //DIALOG
 
