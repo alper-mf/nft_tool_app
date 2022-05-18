@@ -1,6 +1,3 @@
-/// 页面跳转
-// import 'dart:html';
-import 'dart:io';
 import 'package:url_launcher/url_launcher.dart';
 
 class URLSchemeUntils {
@@ -9,7 +6,7 @@ class URLSchemeUntils {
     final secheme = url.scheme;
     final host = url.host;
     final paths = url.path.substring(1).split('/');
-    final fragment = url.fragment;
+
     final query = url.queryParameters;
     final path = paths.isNotEmpty ? paths[0] : '';
     if (secheme == 'http' || secheme == 'https') {
@@ -32,7 +29,6 @@ class URLSchemeUntils {
     return false;
   }
 
-  //打开外部浏览器
   static openBrower(String url) async {
     final can = await canLaunch(url);
     if (can) {
@@ -42,7 +38,6 @@ class URLSchemeUntils {
     }
   }
 
-  //拨打电话
   static call(String aaa) async {
     final url = 'tel:' + aaa;
     if (await canLaunch(url)) {
@@ -52,7 +47,6 @@ class URLSchemeUntils {
     }
   }
 
-  //发送短信
   static message(String phone) async {
     final url = 'sms:$phone';
     if (await canLaunch(url)) {
@@ -62,16 +56,15 @@ class URLSchemeUntils {
     }
   }
 
-  //打开外部应运用
   static openOtherApp(String url) async {
     /**
      * weixin://
      * alipays://
      */
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+    try {
+      await launchUrl(Uri.parse(url));
+    } catch (e) {
+      print(e.toString());
     }
   }
 // handleURLScheme:(NSString *)urlScheme from:(id)fromObject

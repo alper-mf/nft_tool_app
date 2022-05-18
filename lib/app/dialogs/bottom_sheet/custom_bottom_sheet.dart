@@ -26,7 +26,7 @@ class CBottomSheet {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white12,
+                  color: Colors.white10,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   border: Border.all(
                     color: Colors.black26,

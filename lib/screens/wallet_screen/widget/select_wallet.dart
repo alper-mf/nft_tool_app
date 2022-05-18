@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:nft_tool_app/app/components/button/rounded_button.dart';
+import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
 import 'package:nft_tool_app/app/model/enums/wallet_enums.dart';
+import 'package:nft_tool_app/app/theme/colors/colors.dart';
+import 'package:nft_tool_app/app/theme/text_and_style/connect_my_wallet/wallet_styles.dart';
+import 'package:nft_tool_app/app/theme/text_and_style/connect_my_wallet/wallet_texts.dart';
 import 'package:nft_tool_app/screens/wallet_screen/controller/wallet_controller.dart';
 
 class SelectWalletSheet extends GetView<WalletController> {
@@ -18,33 +23,34 @@ class SelectWalletSheet extends GetView<WalletController> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text(
-          'Cüzdan Seç',
+        Text(
+          WalletTexts.pleaseSelectYourWallet,
           textAlign: TextAlign.center,
+          style: WalletTextStyles.sheetTitle,
         ),
         SizedBox(
           height: SizeConfig.height * .03,
         ),
         _WalletButton(
-          svgIcon: '',
+          svgIcon: metamaskOutlined,
           tap: () => controller.connect(Wallet.metamask),
-          walletTitle: 'Metamask',
+          walletTitle: WalletTexts.metamask,
         ),
         SizedBox(
           height: SizeConfig.height * .02,
         ),
         _WalletButton(
-          svgIcon: '',
+          svgIcon: trustWalletOutlined,
           tap: () => controller.connect(Wallet.trust),
-          walletTitle: 'Trust Wallet',
+          walletTitle: WalletTexts.trustWallet,
         ),
         SizedBox(
           height: SizeConfig.height * .02,
         ),
         _WalletButton(
-          svgIcon: '',
+          svgIcon: rainbowWalletOutlined,
           tap: () => controller.connect(Wallet.rainbow),
-          walletTitle: 'Rainbow Wallet',
+          walletTitle: WalletTexts.rainbowWallet,
         ),
       ],
     );
@@ -67,19 +73,28 @@ class _WalletButton extends StatelessWidget {
     return InkWell(
       onTap: tap,
       child: ListTile(
-        visualDensity: VisualDensity.standard,
+        visualDensity: VisualDensity.comfortable,
         minLeadingWidth: 10,
         leading: Container(
           height: 24,
           width: 24,
           margin: EdgeInsets.only(top: SizeConfig.height * .01),
-          child: const Placeholder(
-            color: Colors.white,
-          ),
+          child: svgIcon.isNotEmpty
+              ? SvgPicture.asset(
+                  svgIcon,
+                  color: defaultWhiteColor,
+                )
+              : const Placeholder(
+                  color: Colors.white,
+                ),
         ),
-        title: Text(walletTitle),
-        subtitle: const Text(
+        title: Text(
+          walletTitle,
+          style: WalletTextStyles.sheetTitle,
+        ),
+        subtitle: Text(
           'Select',
+          style: WalletTextStyles.sheetSubtitle,
         ),
       ),
     );

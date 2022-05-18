@@ -7,6 +7,8 @@ import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
 import 'package:nft_tool_app/app/constants/padding_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
+import 'package:nft_tool_app/app/theme/colors/colors.dart';
+import 'package:nft_tool_app/app/theme/text_and_style/connect_my_wallet/wallet_texts.dart';
 import 'package:nft_tool_app/screens/wallet_screen/controller/wallet_controller.dart';
 
 class WalletView extends GetView<WalletController> {
@@ -29,12 +31,15 @@ class WalletView extends GetView<WalletController> {
             SizedBox(
               height: SizeConfig.height * .15,
               width: SizeConfig.height * .15,
-              child: SvgPicture.asset(walletIcon),
+              child: SvgPicture.asset(
+                walletIcon,
+                color: defaultWhiteColor,
+              ),
             ),
             const Padding(
               padding: EdgeInsets.all(globalPadding),
               child: Text(
-                'Özgür finansman dünyasına girmen için\n sadece bir adım kaldı.',
+                WalletTexts.walletScreenInitText,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -54,7 +59,7 @@ class WalletView extends GetView<WalletController> {
                   ),
                   SizedBox(width: SizeConfig.width * .02),
                   Text(
-                    'Cüzdanımı Bağla',
+                    WalletTexts.connectYourWallet,
                     style: TextStyle(color: defaultTextWhitecolor),
                   ),
                 ],
