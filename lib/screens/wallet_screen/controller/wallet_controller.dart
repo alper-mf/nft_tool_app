@@ -49,7 +49,7 @@ class WalletController extends GetxController {
   // Create a connector
   Future<void> createConnector() async {
     if (connector == null) {
-      final session = await sessionStorage.getSession();
+      // final session = await sessionStorage.getSession();
 
       // Subscribe to events
       connector?.on('connect', (session) {

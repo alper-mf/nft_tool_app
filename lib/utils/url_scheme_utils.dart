@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class URLSchemeUntils {
@@ -30,29 +32,28 @@ class URLSchemeUntils {
   }
 
   static openBrower(String url) async {
-    final can = await canLaunch(url);
-    if (can) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+    try {
+      await launchUrl(Uri.parse(url));
+    } catch (e) {
+      log(e.toString());
     }
   }
 
   static call(String aaa) async {
     final url = 'tel:' + aaa;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+    try {
+      await launchUrl(Uri.parse(url));
+    } catch (e) {
+      log(e.toString());
     }
   }
 
   static message(String phone) async {
     final url = 'sms:$phone';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+    try {
+      await launchUrl(Uri.parse(url));
+    } catch (e) {
+      log(e.toString());
     }
   }
 
@@ -64,7 +65,7 @@ class URLSchemeUntils {
     try {
       await launchUrl(Uri.parse(url));
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 // handleURLScheme:(NSString *)urlScheme from:(id)fromObject

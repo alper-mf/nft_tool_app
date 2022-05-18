@@ -27,17 +27,18 @@ class ExpandedEventItem extends StatelessWidget {
       left: leftMargin,
       right: 0,
       height: height,
-      child: AnimatedOpacity(
-        opacity: isVisible! ? 1 : 0,
+      child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius!),
-            color: Colors.white,
-          ),
-          padding: EdgeInsets.only(left: height!).add(const EdgeInsets.all(8)),
-          child: _buildContent(),
-        ),
+        child: isVisible!
+            ? Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(borderRadius!),
+                  color: Colors.white,
+                ),
+                padding: EdgeInsets.only(left: height!).add(const EdgeInsets.all(8)),
+                child: _buildContent(),
+              )
+            : const SizedBox(),
       ),
     );
   }

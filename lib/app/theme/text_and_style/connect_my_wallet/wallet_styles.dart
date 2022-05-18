@@ -21,7 +21,7 @@ class WalletTextStyles {
 
   static final TextStyle sheetTitle = TextStyle(
     fontSize: SizeConfig.width * .04,
-    color: defaultWhiteColor,
+    color: defaultWhiteColor.withOpacity(0.8),
   );
   static final TextStyle sheetSubtitle = TextStyle(
     fontSize: SizeConfig.width * .03,

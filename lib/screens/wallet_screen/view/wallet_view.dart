@@ -8,6 +8,7 @@ import 'package:nft_tool_app/app/constants/colors.dart';
 import 'package:nft_tool_app/app/constants/padding_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
 import 'package:nft_tool_app/app/theme/colors/colors.dart';
+import 'package:nft_tool_app/app/theme/text_and_style/connect_my_wallet/wallet_styles.dart';
 import 'package:nft_tool_app/app/theme/text_and_style/connect_my_wallet/wallet_texts.dart';
 import 'package:nft_tool_app/screens/wallet_screen/controller/wallet_controller.dart';
 
@@ -36,11 +37,12 @@ class WalletView extends GetView<WalletController> {
                 color: defaultWhiteColor,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(globalPadding),
+            Padding(
+              padding: const EdgeInsets.all(globalPadding),
               child: Text(
                 WalletTexts.walletScreenInitText,
                 textAlign: TextAlign.center,
+                style: WalletTextStyles.sheetTitle,
               ),
             ),
             SizedBox(
