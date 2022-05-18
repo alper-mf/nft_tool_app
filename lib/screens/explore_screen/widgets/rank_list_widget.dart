@@ -143,7 +143,7 @@ class _RankListHome extends GetView<ExploreController> {
             'Please check your internet connection.',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: globalTextWhiteColor,
+              color: defaultTextWhitecolor,
               fontSize: 12,
             ),
           ),

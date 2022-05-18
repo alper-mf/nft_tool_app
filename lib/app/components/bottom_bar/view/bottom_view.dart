@@ -21,7 +21,7 @@ class BottomAppbarView extends GetView<BottomAppbarController> {
           Obx(
             () => Container(
               padding: const EdgeInsets.fromLTRB(globalPadding + 5, 0, globalPadding + 5, 0),
-              height: SizeConfig.screenHeight * .1,
+              height: SizeConfig.height * .1,
               width: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +56,7 @@ class BottomAppbarView extends GetView<BottomAppbarController> {
                   InkWell(
                     onTap: () => controller.setPageIndex(3),
                     child: SvgPicture.asset(
-                      walletIcon,
+                      walletIconMini,
                       color: controller.page.value == 3
                           ? Colors.white.withOpacity(0.8)
                           : Colors.grey.withOpacity(0.5),
