@@ -85,28 +85,28 @@ class _RankListHome extends GetView<ExploreController> {
                     Text(
                       '10 art from the collection',
                       style: TextStyle(
-                        color: globalTextWhiteColor.withOpacity(0.5),
+                        color: defaultTextWhitecolor.withOpacity(0.5),
                         fontSize: 12,
                       ),
                     ),
                     SizedBox(
-                      height: SizeConfig.screenHeight * .015,
+                      height: SizeConfig.height * .015,
                     ),
                     SizedBox(
-                      height: SizeConfig.screenHeight * .15,
+                      height: SizeConfig.height * .15,
                       width: double.infinity,
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         itemCount: imageList.length,
                         separatorBuilder: (context, int index) => Padding(
                             padding: EdgeInsets.only(
-                          right: SizeConfig.screenWidth * .03,
+                          right: SizeConfig.width * .03,
                         )),
                         itemBuilder: (context, index) {
                           var e = imageList[index];
                           return SizedBox(
-                            height: SizeConfig.screenHeight * .15,
-                            width: SizeConfig.screenHeight * .15,
+                            height: SizeConfig.height * .15,
+                            width: SizeConfig.height * .15,
                             child: Image.network(
                               e,
                             ),
@@ -115,7 +115,7 @@ class _RankListHome extends GetView<ExploreController> {
                       ),
                     ),
                     SizedBox(
-                      height: SizeConfig.screenHeight * .015,
+                      height: SizeConfig.height * .015,
                     ),
                   ],
                 )
@@ -170,12 +170,12 @@ class _ListTitle extends StatelessWidget {
     return ListTile(
       title: Text(
         item.name!,
-        style: TextStyle(fontSize: 14, color: globalTextWhiteColor),
+        style: TextStyle(fontSize: 14, color: defaultTextWhitecolor),
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
         'view info',
-        style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
+        style: TextStyle(fontSize: 12, color: defaultTextWhitecolor),
       ),
       trailing: SizedBox(
         width: Get.width * .21,
@@ -184,8 +184,8 @@ class _ListTitle extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-                height: SizeConfig.screenHeight * .025,
-                width: SizeConfig.screenHeight * .025,
+                height: SizeConfig.height * .025,
+                width: SizeConfig.height * .025,
                 child: SvgPicture.asset(
                   ethIcon,
                   color: Colors.white.withOpacity(0.5),
@@ -195,7 +195,7 @@ class _ListTitle extends StatelessWidget {
               child: Text(
                 price.toString(),
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
+                style: TextStyle(fontSize: 12, color: defaultTextWhitecolor),
               ),
             ),
           ],
@@ -206,7 +206,7 @@ class _ListTitle extends StatelessWidget {
         children: [
           Text(
             (index + 1).toString() + '. ',
-            style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
+            style: TextStyle(fontSize: 12, color: defaultTextWhitecolor),
           ),
           const SizedBox(width: 5),
           SizedBox(
