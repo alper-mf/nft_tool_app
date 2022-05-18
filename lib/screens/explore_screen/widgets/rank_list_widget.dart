@@ -53,6 +53,12 @@ class _RankListHome extends GetView<ExploreController> {
   }
 
   ListView buildListView(ExploreScreenCompleted state) {
+    var imageList = [
+      'https://lh3.googleusercontent.com/POesFfbLX3KLQVs6ezfRM8AlQzZLlF9rvmdR5FURUt5IsBCwpw_LN6lqoeUrIoVI5dVDjpviUdDgLsmz7oOph7vB3pxpX1aJytLI=w600',
+      'https://lh3.googleusercontent.com/1VgPVf_PBFJuHZB5DNd4-QogyKVj54wb4nEIMe_iCI8URxidbJmKn1fBRfRK80bo13eG4cPYAF5Zc1mj2ZMqdS-SoW5fcBjE0ujD=w600',
+      'https://lh3.googleusercontent.com/yB0KEP8rw7Y9zvRNDAvlSV-GRj2UBZDOAeMcCZiBT5g2E_vjtaNFz61REuKJvH2fEMLXfl8I3rMi6kEZzkN3KcvJNWexhz3HV5NdAQ=w600',
+      'https://lh3.googleusercontent.com/u-2FnHbaJ3U_KCDlmg2McX9Yfo7brsAzOffqihNXCGkHljA89SPPzwdjQiVSWcsvxCoj_ydBcDNCuZvHEekaYekaMEH4XX32k9US=w600',
+    ];
     return ListView.separated(
         // physics: const NeverScrollableScrollPhysics(),
         itemBuilder: ((context, index) {
@@ -63,54 +69,57 @@ class _RankListHome extends GetView<ExploreController> {
             position: index,
             slideDirection: SlideDirection.fromTop,
             animationController: controller.animationController,
-            child: ListTile(
-              title: Text(
-                item.name!,
-                style: TextStyle(fontSize: 14, color: defaultTextWhitecolor),
-                overflow: TextOverflow.ellipsis,
+            child: ExpansionTile(
+              title: _ListTitle(
+                item: item,
+                price: price,
+                index: index,
               ),
-              subtitle: Text(
-                'view info',
-                style: TextStyle(fontSize: 12, color: defaultTextWhitecolor),
-              ),
-              trailing: SizedBox(
-                width: Get.width * .21,
-                child: Row(
+              expandedAlignment: Alignment.topLeft,
+              expandedCrossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                        height: 14,
-                        width: 14,
-                        child: SvgPicture.asset(
-                          ethIcon,
-                          color: Colors.white.withOpacity(0.5),
-                        )),
-                    const SizedBox(width: 5),
                     Text(
-                      price.toString(),
-                      style: TextStyle(fontSize: 12, color: defaultTextWhitecolor),
+                      '10 art from the collection',
+                      style: TextStyle(
+                        color: globalTextWhiteColor.withOpacity(0.5),
+                        fontSize: 12,
+                      ),
+                    ),
+                    SizedBox(
+                      height: SizeConfig.screenHeight * .015,
+                    ),
+                    SizedBox(
+                      height: SizeConfig.screenHeight * .15,
+                      width: double.infinity,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: imageList.length,
+                        separatorBuilder: (context, int index) => Padding(
+                            padding: EdgeInsets.only(
+                          right: SizeConfig.screenWidth * .03,
+                        )),
+                        itemBuilder: (context, index) {
+                          var e = imageList[index];
+                          return SizedBox(
+                            height: SizeConfig.screenHeight * .15,
+                            width: SizeConfig.screenHeight * .15,
+                            child: Image.network(
+                              e,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: SizeConfig.screenHeight * .015,
                     ),
                   ],
-                ),
-              ),
-              leading: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    (index + 1).toString() + '. ',
-                    style: TextStyle(fontSize: 12, color: defaultTextWhitecolor),
-                  ),
-                  const SizedBox(width: 5),
-                  SizedBox(
-                    height: 32,
-                    width: 32,
-                    child: item.imageUrl!.isVectorFileName
-                        ? SvgPicture.network(item.imageUrl!)
-                        : Image.network(item.imageUrl!),
-                  ),
-                ],
-              ),
+                )
+              ],
             ),
           );
         }),
@@ -141,5 +150,74 @@ class _RankListHome extends GetView<ExploreController> {
         ),
       ],
     ));
+  }
+}
+
+class _ListTitle extends StatelessWidget {
+  const _ListTitle({
+    Key? key,
+    required this.item,
+    required this.price,
+    required this.index,
+  }) : super(key: key);
+
+  final CoinRankModel item;
+  final double price;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(
+        item.name!,
+        style: TextStyle(fontSize: 14, color: globalTextWhiteColor),
+        overflow: TextOverflow.ellipsis,
+      ),
+      subtitle: Text(
+        'view info',
+        style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
+      ),
+      trailing: SizedBox(
+        width: Get.width * .21,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+                height: SizeConfig.screenHeight * .025,
+                width: SizeConfig.screenHeight * .025,
+                child: SvgPicture.asset(
+                  ethIcon,
+                  color: Colors.white.withOpacity(0.5),
+                )),
+            const SizedBox(width: 5),
+            Expanded(
+              child: Text(
+                price.toString(),
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
+              ),
+            ),
+          ],
+        ),
+      ),
+      leading: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            (index + 1).toString() + '. ',
+            style: TextStyle(fontSize: 12, color: globalTextWhiteColor),
+          ),
+          const SizedBox(width: 5),
+          SizedBox(
+            height: 32,
+            width: 32,
+            child: item.imageUrl!.isVectorFileName
+                ? SvgPicture.network(item.imageUrl!)
+                : Image.network(item.imageUrl!),
+          ),
+        ],
+      ),
+    );
   }
 }
