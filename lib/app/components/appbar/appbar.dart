@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_controller.dart';
 import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
-import 'package:nft_tool_app/app/constants/padding_const.dart';
+import 'package:nft_tool_app/app/constants/padding_and_radius_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
 
 class MyAppbar extends StatelessWidget {
@@ -13,37 +13,36 @@ class MyAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => AnimatedSwitcher(
+      () => AnimatedOpacity(
         duration: const Duration(milliseconds: 400),
-        child: Get.find<BottomAppbarController>().page.value != 0
-            ? const SizedBox()
-            : SafeArea(
-                child: Container(
-                  height: SizeConfig.height * .085,
-                  padding: const EdgeInsets.all(globalPadding),
-                  width: double.infinity,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'NFT Tool',
-                        style: TextStyle(
-                          fontSize: SizeConfig.height * .025,
-                          color: defaultTextWhitecolor.withOpacity(0.8),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24,
-                        width: 24,
-                        child: SvgPicture.asset(
-                          menuIcon,
-                          color: defaultTextWhitecolor.withOpacity(0.8),
-                        ),
-                      )
-                    ],
+        opacity: Get.find<BottomAppbarController>().page.value != 0 ? 0 : 1,
+        child: SafeArea(
+          child: Container(
+            height: SizeConfig.height * .085,
+            padding: const EdgeInsets.all(globalPadding),
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'NFT Tool',
+                  style: TextStyle(
+                    fontSize: SizeConfig.height * .025,
+                    color: defaultTextWhitecolor.withOpacity(0.8),
                   ),
                 ),
-              ),
+                SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: SvgPicture.asset(
+                    menuIcon,
+                    color: defaultTextWhitecolor.withOpacity(0.8),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

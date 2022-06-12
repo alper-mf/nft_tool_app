@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:nft_tool_app/app/constants/padding_and_radius_const.dart';
 
 class CBottomSheet {
   static show(
@@ -16,9 +17,9 @@ class CBottomSheet {
       ),
       builder: (BuildContext context) {
         return Container(
-          margin: const EdgeInsets.all(8),
+          margin: const EdgeInsets.all(paddingXS),
           child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            borderRadius: const BorderRadius.all(Radius.circular(radiusL)),
             child: BackdropFilter(
               filter: ImageFilter.blur(
                 sigmaX: 20.0,
@@ -26,15 +27,15 @@ class CBottomSheet {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white10,
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  color: Colors.white.withOpacity(0.05),
+                  borderRadius: const BorderRadius.all(Radius.circular(radiusL)),
                   border: Border.all(
                     color: Colors.black26,
                     width: 0.5,
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(globalPadding),
                   child: widget,
                 ),
               ),

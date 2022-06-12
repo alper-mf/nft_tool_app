@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_controller.dart';
 import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
-import 'package:nft_tool_app/app/constants/padding_const.dart';
+import 'package:nft_tool_app/app/constants/padding_and_radius_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
 
 class BottomAppbarView extends GetView<BottomAppbarController> {

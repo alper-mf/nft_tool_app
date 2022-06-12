@@ -15,18 +15,20 @@ class _BodyView extends GetView<ExploreController> {
     return SizedBox(
       height: SizeConfig.height,
       width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: SizeConfig.height * .15),
-          const _HomeTitleWidget(),
-          SearchBarWidget(textEditingController: searchBarTextEditingController),
-          ChipList(
-            chipList: chipList,
-          ),
-          const SizedBox(height: 15),
-          const _RankListHome(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: SizeConfig.height * .15),
+            const _HomeTitleWidget(),
+            SearchBarWidget(textEditingController: searchBarTextEditingController),
+            ChipList(
+              chipList: chipList,
+            ),
+            const SizedBox(height: 15),
+            const _RankListHome(),
+          ],
+        ),
       ),
     );
   }

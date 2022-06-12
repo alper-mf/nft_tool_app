@@ -7,8 +7,10 @@ class _RankListHome extends GetView<ExploreController> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
+    return Obx(
+      () => Container(
+        height: (SizeConfig.height * .11) *
+            (controller.coinRankList.length < 5 ? 5 : controller.coinRankList.length),
         margin: const EdgeInsets.fromLTRB(globalPadding, 0, globalPadding, 0),
         width: double.infinity,
         decoration: BoxDecoration(
@@ -16,43 +18,12 @@ class _RankListHome extends GetView<ExploreController> {
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(generalRadius), topRight: Radius.circular(generalRadius)),
         ),
-        child: BlocProvider(
-          create: (context) =>
-              ExploreScreenCubit(ExploreRepositoryController())..getTokenRankList(),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                child: BlocConsumer<ExploreScreenCubit, ExploreScreenState>(
-                  listener: (context, state) {
-                    if (state is ExploreScreenError) {
-                      // ! - Buraya bir fikir üret.
-                      //  Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message)));
-                    }
-                  },
-                  builder: (context, state) {
-                    if (state is ExploreScreenInitial) {
-                      return const Center(
-                        child: Text('Screen Initial'),
-                      );
-                    } else if (state is ExploreScreenLoading) {
-                      return const LoadingProgressWidget();
-                    } else if (state is ExploreScreenCompleted) {
-                      return buildListView(state);
-                    } else {
-                      return buildError(state);
-                    }
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
+        child: Expanded(child: buildListView()),
       ),
     );
   }
 
-  ListView buildListView(ExploreScreenCompleted state) {
+  ListView buildListView() {
     var imageList = [
       'https://lh3.googleusercontent.com/POesFfbLX3KLQVs6ezfRM8AlQzZLlF9rvmdR5FURUt5IsBCwpw_LN6lqoeUrIoVI5dVDjpviUdDgLsmz7oOph7vB3pxpX1aJytLI=w600',
       'https://lh3.googleusercontent.com/1VgPVf_PBFJuHZB5DNd4-QogyKVj54wb4nEIMe_iCI8URxidbJmKn1fBRfRK80bo13eG4cPYAF5Zc1mj2ZMqdS-SoW5fcBjE0ujD=w600',
@@ -60,9 +31,9 @@ class _RankListHome extends GetView<ExploreController> {
       'https://lh3.googleusercontent.com/u-2FnHbaJ3U_KCDlmg2McX9Yfo7brsAzOffqihNXCGkHljA89SPPzwdjQiVSWcsvxCoj_ydBcDNCuZvHEekaYekaMEH4XX32k9US=w600',
     ];
     return ListView.separated(
-        // physics: const NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: ((context, index) {
-          CoinRankModel item = state.response[index];
+          CoinRankModel item = controller.coinRankList[index];
           var price = double.parse(item.usdPrice!);
           return SlideAnimation(
             itemCount: controller.coinRankList.length,
@@ -78,46 +49,49 @@ class _RankListHome extends GetView<ExploreController> {
               expandedAlignment: Alignment.topLeft,
               expandedCrossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '10 art from the collection',
-                      style: TextStyle(
-                        color: defaultTextWhitecolor.withOpacity(0.5),
-                        fontSize: 12,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(paddingM, paddingM, 0, paddingM),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '10 art from the collection',
+                        style: TextStyle(
+                          color: defaultTextWhitecolor.withOpacity(0.5),
+                          fontSize: 12,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: SizeConfig.height * .015,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.height * .15,
-                      width: double.infinity,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: imageList.length,
-                        separatorBuilder: (context, int index) => Padding(
-                            padding: EdgeInsets.only(
-                          right: SizeConfig.width * .03,
-                        )),
-                        itemBuilder: (context, index) {
-                          var e = imageList[index];
-                          return SizedBox(
-                            height: SizeConfig.height * .15,
-                            width: SizeConfig.height * .15,
-                            child: Image.network(
-                              e,
-                            ),
-                          );
-                        },
+                      SizedBox(
+                        height: SizeConfig.height * .015,
                       ),
-                    ),
-                    SizedBox(
-                      height: SizeConfig.height * .015,
-                    ),
-                  ],
+                      SizedBox(
+                        height: SizeConfig.height * .15,
+                        width: double.infinity,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: imageList.length,
+                          separatorBuilder: (context, int index) => Padding(
+                              padding: EdgeInsets.only(
+                            right: SizeConfig.width * .03,
+                          )),
+                          itemBuilder: (context, index) {
+                            var e = imageList[index];
+                            return SizedBox(
+                              height: SizeConfig.height * .15,
+                              width: SizeConfig.height * .15,
+                              child: Image.network(
+                                e,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: SizeConfig.height * .015,
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
@@ -125,31 +99,6 @@ class _RankListHome extends GetView<ExploreController> {
         }),
         separatorBuilder: (context, index) => const Padding(padding: EdgeInsets.only(top: 0)),
         itemCount: controller.coinRankList.length);
-  }
-
-  Widget buildError(ExploreScreenState state) {
-    return Center(
-        child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          height: 42,
-          width: 42,
-          child: SvgPicture.asset(errorCircleIcon),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(globalPadding - 5),
-          child: Text(
-            'Please check your internet connection.',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: defaultTextWhitecolor,
-              fontSize: 12,
-            ),
-          ),
-        ),
-      ],
-    ));
   }
 }
 

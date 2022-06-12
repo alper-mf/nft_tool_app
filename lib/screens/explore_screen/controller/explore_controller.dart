@@ -28,8 +28,9 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
       var response = await HttpClientService().get(coinRankUrl);
 
       if (response!.statusCode == HttpStatus.ok) {
-        coinRankList.value =
-            jsonDecode(utf8.decode(response.bodyBytes)).map<CoinRankModel>((el) => CoinRankModel.fromJson(el)).toList();
+        coinRankList.value = jsonDecode(utf8.decode(response.bodyBytes))
+            .map<CoinRankModel>((el) => CoinRankModel.fromJson(el))
+            .toList();
 
         return coinRankList();
       }

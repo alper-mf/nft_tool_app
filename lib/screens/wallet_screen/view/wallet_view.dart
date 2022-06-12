@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:nft_tool_app/app/components/button/rounded_button.dart';
 import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
-import 'package:nft_tool_app/app/constants/padding_const.dart';
+import 'package:nft_tool_app/app/constants/padding_and_radius_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
 import 'package:nft_tool_app/app/theme/colors/colors.dart';
 import 'package:nft_tool_app/app/theme/text_and_style/connect_my_wallet/wallet_styles.dart';

@@ -1,5 +1,4 @@
 const String _assets = 'assets/';
-const String _background = 'background/';
 const String _iconsApp = 'icons/app/';
 const String _iconsCrypto = 'icons/crypto/';
 

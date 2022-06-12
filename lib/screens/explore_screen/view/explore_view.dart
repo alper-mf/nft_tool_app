@@ -7,15 +7,11 @@ import 'package:nft_tool_app/app/components/search_bar/search_bar_view.dart';
 import 'package:nft_tool_app/app/components/slide_animation.dart';
 import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
-import 'package:nft_tool_app/app/constants/padding_const.dart';
+import 'package:nft_tool_app/app/constants/padding_and_radius_const.dart';
 import 'package:nft_tool_app/app/constants/radius_const.dart';
-import 'package:nft_tool_app/app/dialogs/loading/progress_widget.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
 import 'package:nft_tool_app/app/model/response/test_model.dart';
 import 'package:nft_tool_app/screens/explore_screen/controller/explore_controller.dart';
-import 'package:nft_tool_app/screens/explore_screen/cubit/explore_repository.dart';
-import 'package:nft_tool_app/screens/explore_screen/cubit/explore_screen_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 part './body_view.dart';
 part '../widgets/rank_list_widget.dart';

@@ -6,7 +6,7 @@ import 'package:nft_tool_app/app/components/bottom_sheet/exhibition_bottom_sheet
 import 'package:nft_tool_app/app/components/chip_list/chip_list.dart';
 import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
-import 'package:nft_tool_app/app/constants/padding_const.dart';
+import 'package:nft_tool_app/app/constants/padding_and_radius_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
 
 part '../widget/top_info_card.dart';
