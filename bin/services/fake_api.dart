@@ -8,11 +8,12 @@ import 'api_models.dart';
 
 class FakeApi implements ApiModels {
   @override
-  Future<String> getCategoryList(String url) async {
+  Future<String> getString(String url) async {
     final targetFile = File(path.join(path.dirname(Platform.script.toFilePath()), url));
-
-    if (await targetFile.exists()) return await targetFile.readAsString();
-
-    return 'Error';
+    try {
+      return await targetFile.readAsString();
+    } catch (e) {
+      return '$e';
+    }
   }
 }

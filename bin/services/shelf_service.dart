@@ -9,6 +9,7 @@ import 'api.dart';
 import 'fake_api.dart';
 
 class ShelfService {
+  static const header = {"Content-type": "application/json"};
   // The handler/middleware that will be used by the server, all the routing for the server will be implemented here.
   Handler get handler {
     final router = Router();
@@ -23,9 +24,9 @@ class ShelfService {
     router.get('/categories/', (Request request) async {
       try {
         late String model;
-        model = await FakeApi().getCategoryList(FilePaths.categoriesPath);
+        model = await FakeApi().getString(FilePaths.categoriesPath);
 
-        return Response.ok(model);
+        return Response.ok(model, headers: header);
       } catch (e) {
         return Response.badRequest(body: e);
       }
