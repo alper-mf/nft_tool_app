@@ -18,7 +18,7 @@ class _RankListHome extends GetView<ExploreController> {
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(generalRadius), topRight: Radius.circular(generalRadius)),
         ),
-        child: Expanded(child: buildListView()),
+        child: buildListView(),
       ),
     );
   }
@@ -32,6 +32,7 @@ class _RankListHome extends GetView<ExploreController> {
     ];
     return ListView.separated(
         physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         itemBuilder: ((context, index) {
           CoinRankModel item = controller.coinRankList[index];
           var price = double.parse(item.usdPrice!);

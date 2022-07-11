@@ -8,7 +8,8 @@ import 'package:nft_tool_app/app/constants/padding_and_radius_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
 
 class MyAppbar extends StatelessWidget {
-  const MyAppbar({Key? key}) : super(key: key);
+  final String title;
+  const MyAppbar({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +26,14 @@ class MyAppbar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'NFT Tool',
+                  title,
                   style: TextStyle(
                     fontSize: SizeConfig.height * .025,
                     color: defaultTextWhitecolor.withOpacity(0.8),
                   ),
                 ),
-                SizedBox(
-                  height: 24,
-                  width: 24,
+                SizedBox.square(
+                  dimension: SizeConfig.blockSizeHorizontal * 10,
                   child: SvgPicture.asset(
                     menuIcon,
                     color: defaultTextWhitecolor.withOpacity(0.8),

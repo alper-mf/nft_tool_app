@@ -1,0 +1,18 @@
+class CategoriesJson {
+  static String json = '''{
+    "categories": [
+      {
+        "category_name": "NFT Rank List"
+      },
+      {
+        "category_name": "Rarirty Tool"
+      },
+      {
+        "category_name": "Trend Alert"
+      },
+      {
+        "category_name": "MarketCap"
+      }
+    ]
+  }''';
+}
