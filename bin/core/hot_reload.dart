@@ -1,42 +1,105 @@
-import 'dart:developer';
+/* // ignore_for_file: prefer_function_declarations_over_variables
+
+import 'dart:async';
 import 'dart:io';
 
-import 'package:vm_service/utils.dart';
+import 'package:hotreloader/hotreloader.dart';
+import 'package:intl/intl.dart';
+import 'package:logging/logging.dart' as logging;
 
-import 'package:vm_service/vm_service_io.dart';
-import 'package:watcher/watcher.dart';
-import 'package:stream_transform/stream_transform.dart';
+/// Provides hot-reloading ability to code that providers an http server.
+///
+/// Hot-reloading requires Dart VM service in order to work.
+void withHotreload(
+  /// Function providing a `dart:io` `HttpServer` that gets reloaded every time
+  /// the code changes.
+  FutureOr<HttpServer> Function() serverFactory, {
 
-import 'dart:developer' as dev;
-import 'package:shelf/shelf_io.dart' as io;
-import 'package:shelf/shelf.dart' as shelf;
+  /// Called every time the application got reloaded.
+  ///
+  /// If not set, it will `print()` a default message.
+  FutureOr<void> Function()? onReloaded,
 
-import '../server.dart';
+  /// Called once if hot-reload is enabled (e.g. VM service is available)
+  ///
+  /// If not set, it will `print()` a default message.
+  FutureOr<void> Function()? onHotReloadAvailable,
 
-class HotRelaodService {
-  HotRelaodService._();
+  /// Called once if hot-reload is not available (e.g. no VM service available)
+  ///
+  /// If not set, it will `print()` a default message.
+  FutureOr<void> Function()? onHotReloadNotAvailable,
 
-  static init(HttpServer server) async {
-    server.autoCompress = true;
-    var observatoryUri = (await dev.Service.getInfo()).serverUri;
-    if (observatoryUri != null) {
-      var serviceClient = await vmServiceConnectUri(
-          convertToWebSocketUrl(serviceProtocolUrl: observatoryUri).toString(),
-          log: StdoutLog());
-      var vm = await serviceClient.getVM();
-      var mainIsolate = vm.isolates!.first;
+  /// Called every time a hot reload log is recorded.
+  FutureOr<void> Function(logging.LogRecord log)? onHotReloadLog,
 
-      Watcher(Directory.current.path)
-          .events
-          .throttle(const Duration(milliseconds: 1000))
-          .listen((_) async {
-        await serviceClient.reloadSources(mainIsolate.id!);
+  /// The log level to use when calling `onHotReloadLog`.
+  /// By default logging is turned off.
+  logging.Level logLevel = logging.Level.OFF,
+}) async {
+  /// Current server instance
+  HttpServer? runningServer;
 
-        print('App restarted ${DateTime.now()}');
-      });
+  /// Set default messages
+  onReloaded ??= () {
+    final time = DateFormat.Hms().format(DateTime.now());
+    stdout.writeln('[hotreload] $time - Application reloaded.');
+  };
+  onHotReloadAvailable ??= () {
+    stdout.writeln('[hotreload] Hot reload is enabled.');
+  };
+  onHotReloadNotAvailable ??= () {
+    stdout.writeln(
+      '[hotreload] Hot reload not enabled. Run this app with --enable-vm-service (or use debug run) in order to enable hot reload.',
+    );
+  };
+  onHotReloadLog ??= (log) {
+    final time = DateFormat.Hms().format(log.time);
+    (log.level < logging.Level.SEVERE ? stdout : stderr).writeln(
+      '[hotreload] $time - ${log.message}',
+    );
+  };
+
+  /// Configure logging
+  logging.hierarchicalLoggingEnabled = true;
+  HotReloader.logLevel = logLevel;
+  logging.Logger.root.onRecord.listen(onHotReloadLog);
+
+  /// Function in charge of replacing the running http server
+  final obtainNewServer = (FutureOr<HttpServer> Function() create) async {
+    /// Will we replace a server?
+    var willReplaceServer = runningServer != null;
+
+    /// Shut down existing server
+    await runningServer?.close(force: true);
+
+    /// Report about reloading
+    if (willReplaceServer) {
+      await onReloaded!.call();
+    }
+
+    /// Create a new server
+    runningServer = await create();
+  };
+
+  try {
+    /// Register the server reload mechanism to the generic HotReloader.
+    /// It will throw an error if reloading is not available.
+    await HotReloader.create(onAfterReload: (ctx) {
+      obtainNewServer(serverFactory);
+    });
+
+    /// Hot-reload is available
+    await onHotReloadAvailable.call();
+  } on StateError catch (e) {
+    if (e.message.contains('VM service not available')) {
+      /// Hot-reload is not available
+      await onHotReloadNotAvailable.call();
     } else {
-      print(
-          'You need to pass `--enable-vm-service --disable-service-auth-codes` to enable hot reload');
+      rethrow;
     }
   }
+
+  await obtainNewServer(serverFactory);
 }
+ */

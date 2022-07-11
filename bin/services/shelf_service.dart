@@ -21,7 +21,7 @@ class ShelfService {
       return Response.ok('hi $name');
     });
 
-    router.get('/categories/', (Request request) async {
+    router.get('/categories', (Request request) async {
       try {
         //  request.headers.addAll(header);
         late String model;
