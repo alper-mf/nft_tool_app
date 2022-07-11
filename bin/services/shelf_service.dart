@@ -1,6 +1,7 @@
+// ignore_for_file: avoid_relative_lib_imports
+
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
-
 import '../lib/constant/file_path.dart' show FilePaths;
 import 'api.dart';
 import 'fake_api.dart';

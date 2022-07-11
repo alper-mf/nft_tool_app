@@ -1,4 +1,4 @@
-/* // ignore_for_file: prefer_function_declarations_over_variables
+// ignore_for_file: prefer_function_declarations_over_variables
 
 import 'dart:async';
 import 'dart:io';
@@ -102,4 +102,3 @@ void withHotreload(
 
   await obtainNewServer(serverFactory);
 }
- */

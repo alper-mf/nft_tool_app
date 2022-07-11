@@ -1,11 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:shelf/shelf_io.dart' as io;
-import 'package:shelf_hotreload/shelf_hotreload.dart';
-
 import 'core/hot_reload.dart';
 import 'services/shelf_service.dart';
+import 'package:logging/logging.dart';
 
 //[ENG]For run
 //[TR] Çalıştırmak için: dart --enable-vm-service bin/server.dart
@@ -23,9 +23,7 @@ main() async {
 Future<HttpServer> createServer() async {
   final service = ShelfService();
   var server = await io.serve(service.handler, 'localhost', 8080);
-
-  print('Serving at http://${server.address.host}:${server.port}');
-
+  print('Server URL: http://${server.address.host}:${server.port}');
   try {
     print('Started');
   } catch (e) {
