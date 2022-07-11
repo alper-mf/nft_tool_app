@@ -1,15 +1,15 @@
-import 'dart:convert';
-
-import 'package:nft_tool_app/app/model/response/categories.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
-import '../lib/constant/file_path.dart';
+import '../lib/constant/file_path.dart' show FilePaths;
 import 'api.dart';
 import 'fake_api.dart';
 
 class ShelfService {
-  static const header = {"Content-type": "application/json"};
+  static const header = {
+    "Content-type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  };
   // The handler/middleware that will be used by the server, all the routing for the server will be implemented here.
   Handler get handler {
     final router = Router();
@@ -23,9 +23,21 @@ class ShelfService {
 
     router.get('/categories/', (Request request) async {
       try {
+        //  request.headers.addAll(header);
         late String model;
         model = await FakeApi().getString(FilePaths.categoriesPath);
 
+        return Response.ok(model, headers: header);
+      } catch (e) {
+        return Response.badRequest(body: e);
+      }
+    });
+
+    router.get('/token/', (Request request) async {
+      try {
+        //  request.headers.addAll(header);
+        late String model;
+        model = await FakeApi().getString(FilePaths.tokenList);
         return Response.ok(model, headers: header);
       } catch (e) {
         return Response.badRequest(body: e);
