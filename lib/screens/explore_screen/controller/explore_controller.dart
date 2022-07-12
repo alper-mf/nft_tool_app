@@ -5,8 +5,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nft_tool_app/app/model/response/coin_rank_list.dart';
 import 'package:nft_tool_app/app/model/response/error_response_model.dart';
-import 'package:nft_tool_app/app/model/response/test_model.dart';
+
 import 'package:nft_tool_app/core/services/http_client_service.dart';
 
 String coinRankUrl = 'https://api.opensea.io/tokens/?format=json&limit=10';
