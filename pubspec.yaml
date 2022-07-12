@@ -43,6 +43,7 @@ dependencies:
   http: ^0.13.4
   intl: ^0.17.0
   json_serializable: ^6.2.0
+  overlay_loading_progress: ^1.0.0
   scan: ^1.6.0
   shared_preferences: ^2.0.7
   shelf_router: ^1.1.3
