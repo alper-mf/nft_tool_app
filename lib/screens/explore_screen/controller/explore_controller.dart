@@ -1,42 +1,81 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nft_tool_app/app/model/response/error_response_model.dart';
-import 'package:nft_tool_app/app/model/response/test_model.dart';
-import 'package:nft_tool_app/core/services/http_client_service.dart';
-
-String coinRankUrl = 'https://api.opensea.io/tokens/?format=json&limit=10';
-String testUrl = 'https://jsonplaceholder.typicode.com/posts';
+import 'package:nft_tool_app/app/bl/manage_request.dart';
+import 'package:nft_tool_app/app/dialogs/loading/loading_progress.dart';
+import 'package:nft_tool_app/app/model/enums/general_enums.dart';
+import 'package:nft_tool_app/app/model/response/coin_rank_list.dart';
+import 'package:nft_tool_app/app/model/status/base_http_model.dart';
+import 'package:nft_tool_app/screens/home_screen/controller/home_controller.dart';
 
 class ExploreController extends GetxController with GetSingleTickerProviderStateMixin {
   late AnimationController animationController;
-  final RxList<CoinRankModel> coinRankList = <CoinRankModel>[].obs;
+  final Rx<CoinRankModel> coinRankList = Rx(CoinRankModel());
+  late Rx<LoadingStatus> _loadingStatus;
 
   ExploreController() {
     animationController = AnimationController(vsync: this, duration: const Duration(seconds: 1));
-    Timer.run(() async {
-      await getNFTRankList();
-    });
+    _loadingStatus = LoadingStatus.init.obs;
   }
 
-  Future<dynamic> getNFTRankList() async {
+  //Loading Status Controller
+  LoadingStatus get loadingStatus => _loadingStatus.value;
+  set loadingStatus(LoadingStatus value) => _loadingStatus.value = value;
+
+  //Current Context
+  BuildContext get context => Get.find<HomeController>().context;
+
+  //Initialize Api Methods And Others
+  Future<void> ready() async {
     try {
-      var response = await HttpClientService().get(coinRankUrl);
-
-      if (response!.statusCode == HttpStatus.ok) {
-        coinRankList.value = jsonDecode(utf8.decode(response.bodyBytes))
-            .map<CoinRankModel>((el) => CoinRankModel.fromJson(el))
-            .toList();
-
-        return coinRankList();
-      }
+      loadingStatus = LoadingStatus.loading;
+      LoadingProgress.showLoading(context);
+      await Future.wait<void>(
+        [
+          _getCategories(),
+          _getTokenList(),
+        ],
+      );
+      loadingStatus = LoadingStatus.loaded;
+      LoadingProgress.done(context);
+    } on String catch (e) {
+      loadingStatus = LoadingStatus.error;
+      LoadingProgress.done(context);
+      //  tryAgainMessage(e);
+      print(e);
     } catch (e) {
-      log('GetCoinRankList Error In Explore Controller' + e.toString());
-      return ErrorResponseModel();
+      loadingStatus = LoadingStatus.error;
+      LoadingProgress.done(context);
+      print(e);
+      //  tryAgainMessage(AppLocalization.getLabels.defaultErrorMessage);
+    } finally {
+      print('Herşey OK');
     }
+  }
+
+  //Kategori listesini getirir.
+  Future<void> _getCategories() async {
+    BaseHttpModel response = await RequestManager().getCategories();
+    if (response.status == BaseModelStatus.ok) {
+      //  userInfo = response.data;
+      //Get.find<SessionService>().setUserInfo(userInfo);
+    } else {
+      throw response.message ?? 'Kategori çekilemedi.';
+    }
+  }
+
+  //Token listesini getirir.
+  Future<void> _getTokenList() async {
+    BaseHttpModel response = await RequestManager().getTokenList();
+    if (response.status == BaseModelStatus.ok) {
+      coinRankList.value = response.data;
+    } else {
+      throw response.message ?? 'Token çekilemedi.';
+    }
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    ready();
   }
 }

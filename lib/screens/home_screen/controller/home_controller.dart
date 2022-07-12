@@ -5,6 +5,10 @@ import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_control
 class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
   late AnimationController? animationController;
   final PageController pageController = PageController();
+  final GlobalKey scaffoldKey = GlobalKey<ScaffoldState>();
+
+  //Current Context
+  BuildContext get context => scaffoldKey.currentContext!;
 
   RxDouble? offset = 0.0.obs;
   RxInt? page = 0.obs;

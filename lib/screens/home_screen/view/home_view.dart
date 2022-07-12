@@ -18,6 +18,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: controller.scaffoldKey,
       body: SizedBox(
         height: SizeConfig.height,
         width: double.infinity,
@@ -29,7 +30,7 @@ class HomeView extends GetView<HomeController> {
               width: double.infinity,
               child: Column(
                 children: const [
-                  MyAppbar(),
+                  MyAppbar(title: 'NFT Tool'),
                   _BuilderPagesWidget(),
                   BottomAppbar(),
                 ],

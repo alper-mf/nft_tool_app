@@ -1,6 +1,6 @@
-import 'package:nft_tool_app/app/model/abstract_base_model.dart';
+import 'package:background_json_parser/background_json_parser.dart';
 
-class TestUser extends IBaseModel {
+class TestUser extends IBaseModel<TestUser> {
   int? userId;
   int? id;
   String? title;
@@ -15,6 +15,7 @@ class TestUser extends IBaseModel {
     body = json['body'];
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['userId'] = userId;
