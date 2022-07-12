@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_relative_lib_imports
 
+import 'package:nft_tool_app/app/constants/http_url.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 import '../lib/constant/file_path.dart' show FilePaths;
@@ -15,16 +16,10 @@ class ShelfService {
   Handler get handler {
     final router = Router();
 
-    // GET
-    // Replies with the text inserted in the path, example: http://localhost:8080/say-hi/Filipe will prompt "hi Filipe".
-
-    router.get('/say-hi/<name>', (Request request, String name) {
-      return Response.ok('hi $name');
-    });
-
-    router.get('/categories', (Request request) async {
+    router.get(HttpUrl.categories, (Request request) async {
       try {
         //  request.headers.addAll(header);
+        await Future.delayed(const Duration(seconds: 2));
         late String model;
         model = await FakeApi().getString(FilePaths.categoriesPath);
 
@@ -34,9 +29,10 @@ class ShelfService {
       }
     });
 
-    router.get('/token/', (Request request) async {
+    router.get(HttpUrl.tokenList, (Request request) async {
       try {
         //  request.headers.addAll(header);
+        await Future.delayed(const Duration(seconds: 4));
         late String model;
         model = await FakeApi().getString(FilePaths.tokenList);
         return Response.ok(model, headers: header);

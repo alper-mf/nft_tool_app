@@ -1,4 +1,4 @@
-import 'package:nft_tool_app/app/model/abstract_base_model.dart';
+import 'package:background_json_parser/background_json_parser.dart';
 
 class CategoriesModel extends IBaseModel<CategoriesModel> {
   CategoriesModel({
@@ -7,18 +7,15 @@ class CategoriesModel extends IBaseModel<CategoriesModel> {
 
   List<Category>? categories;
 
-  factory CategoriesModel.fromMap(Map<String, dynamic> json) => CategoriesModel(
-        categories: List<Category>.from(json["categories"].map((x) => Category.fromMap(x))),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "categories": List<dynamic>.from(categories!.map((x) => x.toMap())),
-      };
-
   @override
   CategoriesModel fromJson(Map json) => CategoriesModel(
         categories: List<Category>.from(json["categories"].map((x) => Category.fromMap(x))),
       );
+
+  @override
+  Map<String, dynamic> toJson() => {
+        "categories": List<dynamic>.from(categories!.map((x) => x.toMap())),
+      };
 }
 
 class Category {
