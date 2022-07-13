@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nft_tool_app/app/bl/manage_request.dart';
@@ -41,14 +43,14 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
       loadingStatus = LoadingStatus.error;
       LoadingProgress.done(context);
       //  tryAgainMessage(e);
-      print(e);
+      log(e);
     } catch (e) {
       loadingStatus = LoadingStatus.error;
       LoadingProgress.done(context);
-      print(e);
+      log(e.toString());
       //  tryAgainMessage(AppLocalization.getLabels.defaultErrorMessage);
     } finally {
-      print('Herşey OK');
+      log('Herşey OK');
     }
   }
 
