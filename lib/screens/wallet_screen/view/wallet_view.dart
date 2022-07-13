@@ -45,9 +45,7 @@ class WalletView extends GetView<WalletController> {
                 style: WalletTextStyles.sheetTitle,
               ),
             ),
-            SizedBox(
-              height: SizeConfig.height * .05,
-            ),
+            SizedBox(height: SizeConfig.height * .05),
             CRoundedButton(
               kHeight: SizeConfig.height * .06,
               onTap: controller.showIosWalletDialog,

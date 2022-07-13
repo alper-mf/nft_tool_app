@@ -14,13 +14,14 @@ class MyAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => AnimatedOpacity(
-        duration: const Duration(milliseconds: 400),
-        opacity: Get.find<BottomAppbarController>().page.value != 0 ? 0 : 1,
-        child: SafeArea(
+      () => SafeArea(
+        top: true,
+        bottom: false,
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 400),
+          opacity: Get.find<BottomAppbarController>().page.value != 0 ? 0 : 1,
           child: Container(
-            height: SizeConfig.height * .085,
-            padding: const EdgeInsets.all(globalPadding),
+            padding: const EdgeInsets.fromLTRB(globalPadding, 0, globalPadding, 0),
             width: double.infinity,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,7 +34,7 @@ class MyAppbar extends StatelessWidget {
                   ),
                 ),
                 SizedBox.square(
-                  dimension: SizeConfig.blockSizeHorizontal * 10,
+                  dimension: SizeConfig.blockSizeHorizontal * 8,
                   child: SvgPicture.asset(
                     menuIcon,
                     color: defaultTextWhitecolor.withOpacity(0.8),
