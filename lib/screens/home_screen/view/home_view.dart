@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nft_tool_app/app/components/appbar/appbar.dart';
 import 'package:nft_tool_app/app/components/background/background_widget.dart';
 import 'package:nft_tool_app/app/components/bottom_bar/bottom_bar.dart';
 import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_controller.dart';
