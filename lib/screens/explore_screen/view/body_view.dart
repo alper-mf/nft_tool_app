@@ -19,6 +19,7 @@ class _BodyView extends GetView<ExploreController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const MyAppbar(title: 'NFT Tool'),
             SizedBox(height: SizeConfig.height * .15),
             const _HomeTitleWidget(),
             SearchBarWidget(textEditingController: searchBarTextEditingController),

@@ -30,7 +30,6 @@ class HomeView extends GetView<HomeController> {
               width: double.infinity,
               child: Column(
                 children: const [
-                  MyAppbar(title: 'NFT Tool'),
                   _BuilderPagesWidget(),
                   BottomAppbar(),
                 ],

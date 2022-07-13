@@ -22,33 +22,28 @@ class DetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: SafeArea(
-        child: SizedBox(
-          height: SizeConfig.height,
-          width: double.infinity,
-          child: Stack(
-            children: [
-              SizedBox(
-                height: SizeConfig.height / 2,
-                width: SizeConfig.width,
-                child: Image.network(azuki),
-              ),
-              Padding(
-                  padding:
-                      const EdgeInsets.fromLTRB(globalPadding, globalPadding, globalPadding, 0),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: SizeConfig.height * .03,
-                      ),
-                      const _TopInfoCard(),
-                      SizedBox(height: SizeConfig.height * .03),
-                      // const DetailChart()
-                    ],
-                  )),
-              const ExhibitionBottomSheet(),
-            ],
-          ),
+      body: SizedBox.expand(
+        child: Stack(
+          children: [
+            SizedBox(
+              height: SizeConfig.height / 2,
+              width: SizeConfig.width,
+              child: Image.network(azuki),
+            ),
+            Padding(
+                padding: const EdgeInsets.fromLTRB(globalPadding, globalPadding, globalPadding, 0),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: SizeConfig.height * .03,
+                    ),
+                    const _TopInfoCard(),
+                    SizedBox(height: SizeConfig.height * .03),
+                    // const DetailChart()
+                  ],
+                )),
+            const ExhibitionBottomSheet(),
+          ],
         ),
       ),
     );

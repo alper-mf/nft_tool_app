@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
+import 'package:nft_tool_app/app/components/appbar/appbar.dart';
 import 'package:nft_tool_app/app/components/chip_list/chip_list.dart';
 import 'package:nft_tool_app/app/components/search_bar/search_bar_view.dart';
 import 'package:nft_tool_app/app/components/slide_animation.dart';
