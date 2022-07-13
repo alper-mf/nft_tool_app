@@ -42,7 +42,7 @@ jobs:
 #BUILD Android APP
 
   build_appbundle:
-    name: Build Flutter (Andrıid)
+    name: Build Flutter (Android)
     needs: [flutter_test]
     runs-on: ubuntu-latest
     steps:
