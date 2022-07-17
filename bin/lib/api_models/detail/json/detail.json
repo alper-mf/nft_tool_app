@@ -1,21 +1,68 @@
 {
-    "item_detail": {
-      "nft_name": "Azuki",
-      "nft_number": 6184,
-      "is_creator": true,
-      "owner": "Azuki",
-      "adress": "0x4d224452801aced8b2f0aebe155379bb5d594381",
-      "description": "Azuki starts with a collection of 10,000 avatars that give you membership access to The Garden: a corner of the internet where artists, builders, and web3 enthusiasts meet to create a decentralized future. Azuki holders receive access to exclusive drops, experiences, and more.",
-      "image_url": "https://ikzttp.mypinata.cloud/ipfs/QmYDvPAXtiJg7s8JdRBSLWdgSphQdac8j1YuQNNxcGE1hg/4369.png",
-      "owner_logo": "https://pbs.twimg.com/profile_images/1514324107881431045/vsF28_QV_400x400.jpg",
-      "price_type": "eth",
-      "last_bid": 10,
-      "market":[
-        {
-          "market_name" :"OpenSea",
-          "market_logo": "https://opensea.io/static/images/logos/opensea.svg",
-          "market_url": "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/2152"
-        }
-      ]
-    }
+  "item_detail": {
+    "nft_name": "Azuki",
+    "nft_number": 6184,
+    "is_creator": true,
+    "owner": "Azuki",
+    "adress": "0x4d224452801aced8b2f0aebe155379bb5d594381",
+    "description": "Azuki starts with a collection of 10,000 avatars that give you membership access to The Garden: a corner of the internet where artists, builders, and web3 enthusiasts meet to create a decentralized future. Azuki holders receive access to exclusive drops, experiences, and more.",
+    "image_url": "https://ikzttp.mypinata.cloud/ipfs/QmYDvPAXtiJg7s8JdRBSLWdgSphQdac8j1YuQNNxcGE1hg/4369.png",
+    "owner_logo": "https://pbs.twimg.com/profile_images/1514324107881431045/vsF28_QV_400x400.jpg",
+    "price_type": "eth",
+    "last_bid": 10,
+    "market": [
+      {
+        "market_name": "OpenSea",
+        "market_logo": "https://opensea.io/static/images/logos/opensea.svg",
+        "market_url": "https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/2152"
+      }
+    ],
+    "rarirty": [
+      {
+        "trait_type": "ear",
+        "value": "Red Bean",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 441,
+        "order": null,
+        "rarirty_percent" : "10.2%"
+      },
+      {
+        "trait_type": "speacial",
+        "value": "Water",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 441,
+        "order": null,
+        "rarirty_percent" : "10.2%"
+      },
+      {
+        "trait_type": "type",
+        "value": "Red",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 441,
+        "order": null,
+        "rarirty_percent" : "10.2%"
+      },
+      {
+        "trait_type": "face",
+        "value": "Sear Eyeband",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 441,
+        "order": null,
+        "rarirty_percent" : "10.2%"
+      },
+      {
+        "trait_type": "hair",
+        "value": "Black Disheveled",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 441,
+        "order": null,
+        "rarirty_percent" : "10.2%"
+      }
+    ]
   }
+}

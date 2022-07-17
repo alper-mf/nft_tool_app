@@ -11,6 +11,7 @@ import 'package:nft_tool_app/app/constants/colors.dart';
 import 'package:nft_tool_app/app/constants/padding_and_radius_const.dart';
 import 'package:nft_tool_app/app/constants/radius_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
+import 'package:nft_tool_app/app/model/enums/general_enums.dart';
 import 'package:nft_tool_app/app/model/response/coin_rank_list.dart';
 
 import 'package:nft_tool_app/screens/explore_screen/controller/explore_controller.dart';

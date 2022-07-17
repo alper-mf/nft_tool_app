@@ -7,8 +7,14 @@ class _RankListHome extends GetView<ExploreController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Container(
+    return Obx(() {
+      if (controller.loadingStatus != LoadingStatus.loaded) {
+        return const Center(
+          child: CircularProgressIndicator.adaptive(),
+        );
+      }
+
+      return Container(
         height: (SizeConfig.height * .11) *
             (controller.coinRankList.value.token!.length < 5
                 ? 5
@@ -21,8 +27,8 @@ class _RankListHome extends GetView<ExploreController> {
               topLeft: Radius.circular(generalRadius), topRight: Radius.circular(generalRadius)),
         ),
         child: buildListView(),
-      ),
-    );
+      );
+    });
   }
 
   ListView buildListView() {

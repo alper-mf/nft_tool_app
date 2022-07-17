@@ -15,9 +15,10 @@ class NftDetailModel extends IBaseModel<NftDetailModel> {
       );
 
   @override
-  Map<String, dynamic> toJson() => {
-        "item_detail": itemDetail!.toMap(),
-      };
+  Map<String, dynamic> toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }
 
 class ItemDetail {
@@ -47,32 +48,20 @@ class ItemDetail {
   String? priceType;
   int? lastBid;
   List<Market>? market;
-  Rarirty? rarirty;
+  List<Rarirty>? rarirty;
 
   factory ItemDetail.fromMap(Map<String, dynamic> json) => ItemDetail(
-      nftName: json["nft_name"],
-      nftNumber: json["nft_number"],
-      isCreator: json["is_creator"],
-      owner: json["owner"],
-      adress: json["adress"],
-      description: json["description"],
-      imageUrl: json["image_url"],
-      ownerLogo: json["owner_logo"],
-      priceType: json["price_type"],
-      lastBid: json["last_bid"],
-      market: List<Market>.from(json["market"].map((x) => Market.fromMap(x))),
-      rarirty: Rarirty.fromMap(json["rarirty"]));
-
-  Map<String, dynamic> toMap() => {
-        "nft_name": nftName,
-        "nft_number": nftNumber,
-        "is_creator": isCreator,
-        "owner": owner,
-        "adress": adress,
-        "description": description,
-        "image_url": imageUrl,
-        "owner_logo": ownerLogo,
-        "price_type": priceType,
-        "last_bid": lastBid,
-      };
+        nftName: json["nft_name"],
+        nftNumber: json["nft_number"],
+        isCreator: json["is_creator"],
+        owner: json["owner"],
+        adress: json["adress"],
+        description: json["description"],
+        imageUrl: json["image_url"],
+        ownerLogo: json["owner_logo"],
+        priceType: json["price_type"],
+        lastBid: json["last_bid"],
+        market: List<Market>.from(json["market"].map((x) => Market.fromMap(x))),
+        rarirty: List<Rarirty>.from(json["rarirty"].map((x) => Rarirty.fromMap(x))),
+      );
 }

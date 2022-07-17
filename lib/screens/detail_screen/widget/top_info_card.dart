@@ -1,11 +1,8 @@
 part of '../view/detail_view.dart';
 
-class _TopInfoCard extends StatelessWidget {
-  final String text =
-      'Azuki starts with a collection of 10,000 avatars that give you membership access to The Garden: a corner of the internet where artists, builders, and web3 enthusiasts meet to create a decentralized future. Azuki holders receive access to exclusive drops, experiences, and more.';
-  const _TopInfoCard({
-    Key? key,
-  }) : super(key: key);
+class _TopInfoCard extends StatelessWidget with NftDetailsStyles {
+  final ItemDetail itemDetail;
+  const _TopInfoCard({Key? key, required this.itemDetail}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,37 +23,28 @@ class _TopInfoCard extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: cardColorDark,
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.all(SizeConfig.height * .013),
-                    child: SvgPicture.asset(
-                      ethIcon,
-                      color: defaultTextWhitecolor.withOpacity(0.8),
-                    ),
-                  ),
+                  child: ClipOval(child: ImageNetworkViewer(imageUrl: itemDetail.ownerLogo!)),
                 ),
                 SizedBox(width: SizeConfig.width * .02),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Azuki',
+                      itemDetail.owner ?? '',
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: defaultTextWhitecolor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: SizeConfig.width * .045,
-                      ),
+                      style: s14w700Dark(context).copyWith(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: SizeConfig.height * .005,
                     ),
                     Text(
-                      'Creator',
-                      style: TextStyle(
-                        color: defaultTextWhitecolor.withOpacity(0.5),
-                        fontWeight: FontWeight.w500,
-                        fontSize: SizeConfig.width * .035,
-                      ),
+                      itemDetail.isCreator != null
+                          ? itemDetail.isCreator!
+                              ? 'Creator'
+                              : 'Owner'
+                          : 'Creator',
+                      style: s12w400Dark(context)
+                          .copyWith(color: defaultTextWhitecolor.withOpacity(0.5)),
                     ),
                   ],
                 ),
@@ -65,36 +53,25 @@ class _TopInfoCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  'Azuki #6184',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: defaultTextWhitecolor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: SizeConfig.width * .045,
-                  ),
-                ),
+                Text('${itemDetail.owner} #${itemDetail.nftNumber} ',
+                    overflow: TextOverflow.ellipsis,
+                    style: s14w700Dark(context).copyWith(fontWeight: FontWeight.bold)),
                 SizedBox(
                   height: SizeConfig.height * .005,
                 ),
-                Text(
-                  '%2.20',
-                  style: TextStyle(
-                    color: defaultTextWhitecolor.withOpacity(0.5),
-                    fontWeight: FontWeight.w500,
-                    fontSize: SizeConfig.width * .035,
-                  ),
-                ),
+                Text('%2.20',
+                    style: s12w400Dark(context)
+                        .copyWith(color: defaultTextWhitecolor.withOpacity(0.5))),
               ],
             ),
           ],
         ),
         SizedBox(height: SizeConfig.height * .03),
         Text(
-          text,
+          itemDetail.description ?? '',
           overflow: TextOverflow.ellipsis,
           maxLines: 4,
-          style: TextStyle(color: defaultTextWhitecolor),
+          style: s12w400Dark(context).copyWith(color: defaultTextWhitecolor.withOpacity(0.9)),
         )
       ],
     );

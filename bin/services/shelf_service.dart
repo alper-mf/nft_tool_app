@@ -31,7 +31,7 @@ class ShelfService {
     });
 
     //NFTDetail Endpoint
-    router.get(HttpUrl.nftDetail, (Request request) async {
+    router.get(HttpUrl.nftDetail(0), (Request request) async {
       try {
         //  request.headers.addAll(header);
         await Future.delayed(const Duration(seconds: 2));

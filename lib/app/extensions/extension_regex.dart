@@ -14,6 +14,16 @@ extension TSRegEx on String {
     return null;
   }
 
+  bool isSvg() {
+    String pattern = r'.svg';
+    RegExp regExp = RegExp(pattern);
+
+    if (!regExp.hasMatch(this)) {
+      return false;
+    }
+    return true;
+  }
+
   //for validate phone numbers
   String? isTelNo() {
     String pattern = r'(^(?:[+0]9)?[0-9]{10}$)';
@@ -56,8 +66,7 @@ extension TSRegEx on String {
 
   //for validate name
   String? isName() {
-    String pattern =
-        r"^[a-zA-Z-üğişçöĞÜİŞÇÖıI]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
+    String pattern = r"^[a-zA-Z-üğişçöĞÜİŞÇÖıI]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
     RegExp regExp = RegExp(pattern);
     if (isEmpty) {
       return 'Ad giriniz.';

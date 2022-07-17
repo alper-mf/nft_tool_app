@@ -1,73 +1,155 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:nft_tool_app/app/components/appbar/global_app_bar.dart';
+import 'package:nft_tool_app/app/components/background/glass_widget.dart';
 
-import 'package:nft_tool_app/app/components/bottom_sheet/exhibition_bottom_sheet/exhibition_bottom_sheet.dart';
+import 'package:nft_tool_app/app/components/button/rounded_button.dart';
 import 'package:nft_tool_app/app/components/chip_list/chip_list.dart';
-import 'package:nft_tool_app/app/constants/assets_const.dart';
+import 'package:nft_tool_app/app/components/image/image_network_viewer.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
 import 'package:nft_tool_app/app/constants/padding_and_radius_const.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
+import 'package:nft_tool_app/app/model/enums/general_enums.dart';
+import 'package:nft_tool_app/app/model/response/nft_detail.dart';
+import 'package:nft_tool_app/app/model/response/rarirty.dart';
+import 'package:nft_tool_app/app/theme/text_and_style/general_style/my_text_style.dart';
+import 'package:nft_tool_app/app/theme/text_and_style/nft_detail/nft_detail_styles.dart';
+import 'package:nft_tool_app/screens/detail_screen/controller/detail_controller.dart';
 
 part '../widget/top_info_card.dart';
 part '../widget/detail_chart.dart';
+part '../widget/bottom_buttons.dart';
 
-String azuki =
-    'https://ikzttp.mypinata.cloud/ipfs/QmYDvPAXtiJg7s8JdRBSLWdgSphQdac8j1YuQNNxcGE1hg/4369.png';
-
-class DetailView extends StatelessWidget {
+class DetailView extends GetView<DetailController> {
   const DetailView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: controller.scaffoldKey,
       appBar: const MyAppBar(
         title: 'Details',
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       backgroundColor: Colors.transparent,
-      body: SafeArea(
-        child: Container(
+      body: Obx(() {
+        if (controller.loadingStatus != LoadingStatus.loaded) {
+          return const Center(
+            child: CircularProgressIndicator.adaptive(),
+          );
+        }
+        return SizedBox(
           height: SizeConfig.height,
           width: SizeConfig.width,
-          padding: const EdgeInsets.only(left: paddingXL, right: paddingXL),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Stack(
+            fit: StackFit.expand,
             children: [
-              Flexible(
-                flex: 1,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox.square(
-                        dimension: SizeConfig.blockSizeHorizontal * 90,
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(Radius.circular(radiusM)),
-                              image: DecorationImage(
-                                image: NetworkImage(azuki),
-                              )),
+              SizedBox(
+                height: SizeConfig.height,
+                width: SizeConfig.width,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: paddingXL, right: paddingXL),
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.zero,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox.square(
+                          dimension: SizeConfig.blockSizeHorizontal * 90,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(radiusL),
+                            child: ImageNetworkViewer(
+                                imageUrl: controller.nftDetailModel.itemDetail!.imageUrl!),
+                          ),
                         ),
-                      ),
-                      SizedBox(height: SizeConfig.height * .03),
-                      const _TopInfoCard(),
-                      SizedBox(height: SizeConfig.height * .03),
-                    ],
+                        SizedBox(height: SizeConfig.height * .03),
+                        _TopInfoCard(itemDetail: controller.nftDetailModel.itemDetail!),
+                        SizedBox(height: SizeConfig.height * .03),
+                        _RarirtyProperties(
+                            rarirtyList: controller.nftDetailModel.itemDetail!.rarirty!),
+                        SizedBox(height: SizeConfig.height * .2),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              // Container(
-              //   height: SizeConfig.height * .08,
-              //   width: SizeConfig.width,
-              //   color: Colors.red.withOpacity(0.5),
-              // ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: _BottomButtons(
+                  buyPrice: 10,
+                  buyOnTap: () {},
+                  placeAbidOnTap: () {},
+                ),
+              ),
             ],
           ),
-        ),
-      ),
+        );
+      }),
+    );
+  }
+}
+
+class _RarirtyProperties extends StatelessWidget {
+  final List<Rarirty> rarirtyList;
+  const _RarirtyProperties({Key? key, required this.rarirtyList}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text('Properties',
+            style: s14w700Dark(context).copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: SizeConfig.width * .05,
+              color: defaultTextWhitecolor.withOpacity(0.7),
+            )),
+        SizedBox(height: SizeConfig.height * .02),
+        Wrap(
+          runSpacing: SizeConfig.height * .02,
+          spacing: SizeConfig.width * .04,
+          children: List.generate(rarirtyList.length, (index) {
+            final item = rarirtyList[index];
+            return Container(
+              padding: const EdgeInsets.all(paddingM),
+              decoration: BoxDecoration(
+                  border: Border.all(color: lightGrey),
+                  borderRadius: const BorderRadius.all(Radius.circular(radiusM))),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    item.traitType!.toUpperCase(),
+                    style: s12w400Dark(context).copyWith(fontSize: SizeConfig.height * .015),
+                  ),
+                  SizedBox(height: SizeConfig.height * (.01 / 2)),
+                  Text(
+                    item.value!.capitalizeFirst!,
+                    style: s14w700Dark(context).copyWith(
+                      fontSize: SizeConfig.height * .02,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: SizeConfig.height * (.01 / 2)),
+                  Text(
+                    item.rarirtyPercent! + ' rarirty',
+                    style: s12w400Dark(context).copyWith(
+                        fontSize: SizeConfig.height * .018,
+                        fontWeight: FontWeight.bold,
+                        color: defaultTextWhitecolor.withOpacity(0.7)),
+                  ),
+                ],
+              ),
+            );
+          }),
+        )
+      ],
     );
   }
 }

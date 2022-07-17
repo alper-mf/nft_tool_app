@@ -4,5 +4,7 @@ class HttpUrl {
 
   static const categories = '/categories';
   static const tokenList = '/token';
-  static const nftDetail = '/nft_detail';
+
+  //->NFT Id eklemeyi unutma.
+  static nftDetail(int nftId) => '/nft_detail';
 }

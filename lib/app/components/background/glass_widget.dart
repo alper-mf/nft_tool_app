@@ -6,11 +6,13 @@ class GlassWidget extends StatelessWidget {
   final double sigma;
   final double radius;
   final Widget widget;
+  final double? padding;
   const GlassWidget({
     Key? key,
     required this.sigma,
     required this.radius,
     required this.widget,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class GlassWidget extends StatelessWidget {
       child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: sigma, sigmaY: sigma),
           child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
+              padding: EdgeInsets.symmetric(horizontal: padding ?? 32),
               decoration: BoxDecoration(
                   color: Colors.black.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(radius)),
