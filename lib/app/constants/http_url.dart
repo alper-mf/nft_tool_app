@@ -4,4 +4,5 @@ class HttpUrl {
 
   static const categories = '/categories';
   static const tokenList = '/token';
+  static const nftDetail = '/nft_detail';
 }

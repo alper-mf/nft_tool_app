@@ -16,6 +16,7 @@ class ShelfService {
   Handler get handler {
     final router = Router();
 
+    //Categories Endpoint
     router.get(HttpUrl.categories, (Request request) async {
       try {
         //  request.headers.addAll(header);
@@ -29,6 +30,21 @@ class ShelfService {
       }
     });
 
+    //NFTDetail Endpoint
+    router.get(HttpUrl.nftDetail, (Request request) async {
+      try {
+        //  request.headers.addAll(header);
+        await Future.delayed(const Duration(seconds: 2));
+        late String model;
+        model = await FakeApi().getString(FilePaths.nftDetail);
+
+        return Response.ok(model, headers: header);
+      } catch (e) {
+        return Response.badRequest(body: e);
+      }
+    });
+
+    //TokenList Endpoint
     router.get(HttpUrl.tokenList, (Request request) async {
       try {
         //  request.headers.addAll(header);
