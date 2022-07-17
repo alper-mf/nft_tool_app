@@ -20,6 +20,7 @@ import 'package:nft_tool_app/screens/detail_screen/controller/detail_controller.
 part '../widget/top_info_card.dart';
 part '../widget/detail_chart.dart';
 part '../widget/bottom_buttons.dart';
+part '../widget/properties.dart';
 
 class DetailView extends GetView<DetailController> {
   const DetailView({Key? key}) : super(key: key);
@@ -59,10 +60,33 @@ class DetailView extends GetView<DetailController> {
                       children: [
                         SizedBox.square(
                           dimension: SizeConfig.blockSizeHorizontal * 90,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(radiusL),
-                            child: ImageNetworkViewer(
-                                imageUrl: controller.nftDetailModel.itemDetail!.imageUrl!),
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(radiusL),
+                                child: ImageNetworkViewer(
+                                    imageUrl: controller.nftDetailModel.itemDetail!.imageUrl!),
+                              ),
+                              Positioned(
+                                right: 10,
+                                top: 20,
+                                child: GlassWidget(
+                                  sigma: 18,
+                                  radius: 10,
+                                  padding: paddingS,
+                                  widget: Padding(
+                                    padding: const EdgeInsets.all(paddingS),
+                                    child: Text(
+                                      controller.nftDetailModel.itemDetail!.rareType!,
+                                      style: s14w400Dark(context).copyWith(
+                                        fontSize: SizeConfig.width * .05,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(height: SizeConfig.height * .03),
@@ -88,68 +112,6 @@ class DetailView extends GetView<DetailController> {
           ),
         );
       }),
-    );
-  }
-}
-
-class _RarirtyProperties extends StatelessWidget {
-  final List<Rarirty> rarirtyList;
-  const _RarirtyProperties({Key? key, required this.rarirtyList}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text('Properties',
-            style: s14w700Dark(context).copyWith(
-              fontWeight: FontWeight.bold,
-              fontSize: SizeConfig.width * .05,
-              color: defaultTextWhitecolor.withOpacity(0.7),
-            )),
-        SizedBox(height: SizeConfig.height * .02),
-        Wrap(
-          runSpacing: SizeConfig.height * .02,
-          spacing: SizeConfig.width * .04,
-          children: List.generate(rarirtyList.length, (index) {
-            final item = rarirtyList[index];
-            return Container(
-              padding: const EdgeInsets.all(paddingM),
-              decoration: BoxDecoration(
-                  border: Border.all(color: lightGrey),
-                  borderRadius: const BorderRadius.all(Radius.circular(radiusM))),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    item.traitType!.toUpperCase(),
-                    style: s12w400Dark(context).copyWith(fontSize: SizeConfig.height * .015),
-                  ),
-                  SizedBox(height: SizeConfig.height * (.01 / 2)),
-                  Text(
-                    item.value!.capitalizeFirst!,
-                    style: s14w700Dark(context).copyWith(
-                      fontSize: SizeConfig.height * .02,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: SizeConfig.height * (.01 / 2)),
-                  Text(
-                    item.rarirtyPercent! + ' rarirty',
-                    style: s12w400Dark(context).copyWith(
-                        fontSize: SizeConfig.height * .018,
-                        fontWeight: FontWeight.bold,
-                        color: defaultTextWhitecolor.withOpacity(0.7)),
-                  ),
-                ],
-              ),
-            );
-          }),
-        )
-      ],
     );
   }
 }

@@ -23,6 +23,7 @@ class NftDetailModel extends IBaseModel<NftDetailModel> {
 
 class ItemDetail {
   ItemDetail({
+    this.rareType,
     this.nftName,
     this.nftNumber,
     this.isCreator,
@@ -46,11 +47,13 @@ class ItemDetail {
   String? imageUrl;
   String? ownerLogo;
   String? priceType;
+  String? rareType;
   int? lastBid;
   List<Market>? market;
   List<Rarirty>? rarirty;
 
   factory ItemDetail.fromMap(Map<String, dynamic> json) => ItemDetail(
+        rareType: json["rare_type"],
         nftName: json["nft_name"],
         nftNumber: json["nft_number"],
         isCreator: json["is_creator"],
