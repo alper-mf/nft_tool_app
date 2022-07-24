@@ -10,7 +10,7 @@ class MarketPlaceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder(
       init: MarketPlaceController(),
-      builder: (_) => MarketPlaceView(),
+      builder: (_) => const MarketPlaceView(),
     );
   }
 }

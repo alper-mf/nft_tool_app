@@ -89,5 +89,8 @@ const double sizeXL = 24;
 /// Size = 32;
 const double sizeXXL = 32;
 
+/// Size = 48;
+const double sizeXXXL = 48;
+
 /// Size = 56;
-const double sizeXXXL = 56;
+const double sizeXXXXL = 56;

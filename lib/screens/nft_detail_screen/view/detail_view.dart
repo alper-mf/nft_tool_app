@@ -15,15 +15,15 @@ import 'package:nft_tool_app/app/model/response/nft_detail.dart';
 import 'package:nft_tool_app/app/model/response/rarirty.dart';
 import 'package:nft_tool_app/app/theme/text_and_style/general_style/my_text_style.dart';
 import 'package:nft_tool_app/app/theme/text_and_style/nft_detail/nft_detail_styles.dart';
-import 'package:nft_tool_app/screens/detail_screen/controller/detail_controller.dart';
+import 'package:nft_tool_app/screens/nft_detail_screen/controller/detail_controller.dart';
 
 part '../widget/top_info_card.dart';
 part '../widget/detail_chart.dart';
 part '../widget/bottom_buttons.dart';
 part '../widget/properties.dart';
 
-class DetailView extends GetView<DetailController> {
-  const DetailView({Key? key}) : super(key: key);
+class NftDetailView extends GetView<NftDetailController> {
+  const NftDetailView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

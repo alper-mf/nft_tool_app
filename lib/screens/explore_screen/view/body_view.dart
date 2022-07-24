@@ -22,10 +22,11 @@ class _BodyView extends GetView<ExploreController> {
             const MyAppbar(title: 'NFT Tool'),
             SizedBox(height: SizeConfig.height * .15),
             const _HomeTitleWidget(),
-            SearchBarWidget(textEditingController: searchBarTextEditingController),
-            ChipList(
-              chipList: chipList,
+            Padding(
+              padding: const EdgeInsets.all(paddingXL),
+              child: SearchBarWidget(textEditingController: searchBarTextEditingController),
             ),
+            ChipList(chipList: chipList),
             const SizedBox(height: 15),
             const _RankListHome(),
           ],

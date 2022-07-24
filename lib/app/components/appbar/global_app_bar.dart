@@ -16,20 +16,22 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Key? appBarKey;
   final double? leadingWidth;
   final Color? backgroundColor;
+  final PreferredSizeWidget? bottomWidget;
 
-  const MyAppBar({
-    Key? key,
-    this.titleWidget,
-    this.elevation,
-    this.title,
-    this.backgroundColor,
-    this.imageURL,
-    this.actionWidget,
-    this.actionPadding,
-    this.actionLeading,
-    this.appBarKey,
-    this.leadingWidth,
-  }) : super(key: key);
+  const MyAppBar(
+      {Key? key,
+      this.titleWidget,
+      this.elevation,
+      this.title,
+      this.backgroundColor,
+      this.imageURL,
+      this.actionWidget,
+      this.actionPadding,
+      this.actionLeading,
+      this.appBarKey,
+      this.leadingWidth,
+      this.bottomWidget})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor ?? Colors.transparent,
       elevation: elevation,
       leading: actionLeading,
+      bottom: bottomWidget,
       title: title != null
           ? Text(title!)
           : titleWidget ??

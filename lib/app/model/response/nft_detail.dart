@@ -16,7 +16,6 @@ class NftDetailModel extends IBaseModel<NftDetailModel> {
 
   @override
   Map<String, dynamic> toJson() {
-    // TODO: implement toJson
     throw UnimplementedError();
   }
 }

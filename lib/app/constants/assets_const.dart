@@ -16,6 +16,7 @@ const String menuIcon = _assets + _iconsApp + 'menu_icon.svg';
 const String metamaskOutlined = _assets + _iconsApp + 'metamask_outlined.svg';
 const String trustWalletOutlined = _assets + _iconsApp + 'shield_icon.svg';
 const String rainbowWalletOutlined = _assets + _iconsApp + 'rainbow_icon.svg';
+const String filtersIcon = _assets + _iconsApp + 'filters_icon.svg';
 
 //SVG ICONS - Crypto
 

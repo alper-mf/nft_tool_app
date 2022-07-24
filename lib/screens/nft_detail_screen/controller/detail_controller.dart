@@ -8,13 +8,13 @@ import 'package:nft_tool_app/app/model/enums/general_enums.dart';
 import 'package:nft_tool_app/app/model/response/nft_detail.dart';
 import 'package:nft_tool_app/app/model/status/base_http_model.dart';
 
-class DetailController extends GetxController {
+class NftDetailController extends GetxController {
   final GlobalKey scaffoldKey = GlobalKey<ScaffoldState>();
   late Rx<LoadingStatus> _loadingStatus;
   late Rx<NftDetailModel> _nftDetailModel;
   late int nftId;
 
-  DetailController(int id) {
+  NftDetailController(int id) {
     _loadingStatus = LoadingStatus.init.obs;
     _nftDetailModel = Rx(NftDetailModel());
     nftId = id;

@@ -5,22 +5,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft_tool_app/app/components/search_bar/controller/search_bar_controller.dart';
 import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
-import 'package:nft_tool_app/app/constants/text_constants/searchbar_text.dart';
+import 'package:nft_tool_app/app/constants/padding_and_radius_const.dart';
 
 class SearchBarWidget extends StatelessWidget {
   final TextEditingController? textEditingController;
-  const SearchBarWidget({Key? key, this.textEditingController}) : super(key: key);
+  final String? hintText;
+  const SearchBarWidget({Key? key, this.textEditingController, this.hintText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchBarController>(
       init: SearchBarController(textEditingController!),
       builder: (controller) => Container(
-          margin: const EdgeInsets.all(15),
           height: 50,
           decoration: BoxDecoration(
               color: searchBarBackgroundColor,
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(radiusM),
               border: Border.all(
                 width: 1,
                 color: searchBarBorderColor,
@@ -69,12 +69,10 @@ class SearchBarWidget extends StatelessWidget {
                   child: TextFormField(
                     style: TextStyle(fontWeight: FontWeight.w200, color: searchBarTextColor),
                     controller: controller.searchbarTextEditingController,
-                    onChanged: (value) {
-                      controller.iconAnimationTrigger();
-                    },
+                    onChanged: (value) => controller.iconAnimationTrigger(),
                     decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: searchBarText,
+                        hintText: hintText ?? '',
                         hintStyle: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w100,

@@ -5,10 +5,10 @@ import 'package:nft_tool_app/app/components/bottom_bar/bottom_bar.dart';
 import 'package:nft_tool_app/app/components/bottom_bar/controller/bottom_controller.dart';
 import 'package:nft_tool_app/app/components/indexed_stack/animated_indexed_stack.dart';
 import 'package:nft_tool_app/app/init/size_config.dart';
-import 'package:nft_tool_app/screens/detail_screen/detail_screen.dart';
 import 'package:nft_tool_app/screens/explore_screen/controller/explore_controller.dart';
 import 'package:nft_tool_app/screens/explore_screen/explore_screen.dart';
 import 'package:nft_tool_app/screens/home_screen/controller/home_controller.dart';
+import 'package:nft_tool_app/screens/market_place_screen/market_place_screen.dart';
 import 'package:nft_tool_app/screens/wallet_screen/wallet_screen.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -55,7 +55,7 @@ class _BuilderPagesWidget extends GetView<ExploreController> {
             index: Get.find<BottomAppbarController>().page.value,
             children: [
               const ExploreScreen(),
-              const DetailScreen(),
+              const MarketPlaceScreen(),
               Container(
                 height: SizeConfig.height,
                 width: double.infinity,
