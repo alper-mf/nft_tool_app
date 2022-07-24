@@ -2,8 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nft_tool_app/app/dialogs/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:nft_tool_app/app/dialogs/loading/loading_progress.dart';
 import 'package:nft_tool_app/app/model/enums/general_enums.dart';
+import 'package:nft_tool_app/app/navigation/pages.dart';
+import 'package:nft_tool_app/screens/nft_detail_screen/detail_screen.dart';
 
 class MarketPlaceController extends GetxController {
   final GlobalKey scaffoldKey = GlobalKey<ScaffoldState>();
@@ -60,6 +64,11 @@ class MarketPlaceController extends GetxController {
     if (selectedTab.value == 1) return 'Search by Collections'.obs;
     if (selectedTab.value == 2) return 'Search by Users'.obs;
     return ''.obs;
+  }
+
+  //Select Nft
+  onTapNft(int nftId) {
+    CBottomSheet.show(context, const NftDetailScreen(), Colors.black.withOpacity(0.6), 0);
   }
 
   @override

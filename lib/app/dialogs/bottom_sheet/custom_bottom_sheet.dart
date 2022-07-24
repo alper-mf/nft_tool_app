@@ -7,17 +7,19 @@ class CBottomSheet {
   static show(
     BuildContext context, [
     Widget? widget,
+    Color? backgroundColor,
+    double? padding,
   ]) async {
     await showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: backgroundColor ?? Colors.transparent,
       isScrollControlled: true,
       constraints: const BoxConstraints(
         maxWidth: double.infinity,
       ),
       builder: (BuildContext context) {
         return Container(
-          margin: const EdgeInsets.all(paddingXS),
+          margin: EdgeInsets.all(padding ?? paddingXS),
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(radiusL)),
             child: BackdropFilter(

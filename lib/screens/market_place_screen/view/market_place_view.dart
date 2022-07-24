@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:nft_tool_app/app/components/appbar/global_app_bar.dart';
 import 'package:nft_tool_app/app/components/background/glass_widget.dart';
 import 'package:nft_tool_app/app/components/button/rounded_button.dart';
+import 'package:nft_tool_app/app/components/indexed_stack/animated_indexed_stack.dart';
 import 'package:nft_tool_app/app/components/search_bar/search_bar_view.dart';
 import 'package:nft_tool_app/app/constants/assets_const.dart';
 import 'package:nft_tool_app/app/constants/colors.dart';
@@ -15,6 +16,9 @@ import 'package:nft_tool_app/app/theme/text_and_style/market/market_styles.dart'
 import 'package:nft_tool_app/screens/market_place_screen/controller/market_place_controller.dart';
 
 part '../widget/select_tab.dart';
+part './nfts_view.dart';
+part './collections_view.dart';
+part './users_view.dart';
 
 class MarketPlaceView extends GetView<MarketPlaceController> {
   const MarketPlaceView({Key? key}) : super(key: key);
@@ -39,6 +43,7 @@ class MarketPlaceView extends GetView<MarketPlaceController> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              /// Searchbar ve Filter Button
               Row(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,7 +69,18 @@ class MarketPlaceView extends GetView<MarketPlaceController> {
                 ],
               ),
               SizedBox(height: SizeConfig.height * .03),
-              _Tabs()
+
+              ///Sekmelerin bulunduğu widget
+              const _Tabs(),
+              SizedBox(height: SizeConfig.height * .02),
+
+              ///Sekmelerin sayfalarının bulunduğu widget
+              Expanded(
+                child: AnimatedIndexedStack(
+                  index: controller.selectedTab.value,
+                  children: const [_NftsView(), _CollectionsView(), _UsersView()],
+                ),
+              )
             ],
           );
         }),

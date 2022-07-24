@@ -21,6 +21,7 @@ class AppRouter {
         ScreensPath.goToHomeScreen(),
         ScreensPath.goToWalletScreen(),
         ScreensPath.goToMarketPlace(),
+        ScreensPath.goToNftDetailScreen(),
       ],
       errorPageBuilder: (context, error) => MaterialPage(
           key: error.pageKey,

@@ -27,91 +27,94 @@ class NftDetailView extends GetView<NftDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: controller.scaffoldKey,
-      appBar: const MyAppBar(
-        title: 'Details',
+    return Padding(
+      padding: const EdgeInsets.only(top: paddingXL),
+      child: Scaffold(
+        key: controller.scaffoldKey,
+        appBar: const MyAppBar(
+          title: 'Details',
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
         backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      backgroundColor: Colors.transparent,
-      body: Obx(() {
-        if (controller.loadingStatus != LoadingStatus.loaded) {
-          return const Center(
-            child: CircularProgressIndicator.adaptive(),
-          );
-        }
-        return SizedBox(
-          height: SizeConfig.height,
-          width: SizeConfig.width,
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              SizedBox(
-                height: SizeConfig.height,
-                width: SizeConfig.width,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: paddingXL, right: paddingXL),
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.zero,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox.square(
-                          dimension: SizeConfig.blockSizeHorizontal * 90,
-                          child: Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(radiusL),
-                                child: ImageNetworkViewer(
-                                    imageUrl: controller.nftDetailModel.itemDetail!.imageUrl!),
-                              ),
-                              Positioned(
-                                right: 10,
-                                top: 20,
-                                child: GlassWidget(
-                                  sigma: 18,
-                                  radius: 10,
-                                  padding: paddingS,
-                                  widget: Padding(
-                                    padding: const EdgeInsets.all(paddingS),
-                                    child: Text(
-                                      controller.nftDetailModel.itemDetail!.rareType!,
-                                      style: s14w400Dark(context).copyWith(
-                                        fontSize: SizeConfig.width * .05,
-                                        fontWeight: FontWeight.bold,
+        body: Obx(() {
+          if (controller.loadingStatus != LoadingStatus.loaded) {
+            return const Center(
+              child: CircularProgressIndicator.adaptive(),
+            );
+          }
+          return SizedBox(
+            height: SizeConfig.height,
+            width: SizeConfig.width,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                SizedBox(
+                  height: SizeConfig.height,
+                  width: SizeConfig.width,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: paddingXL, right: paddingXL),
+                    child: SingleChildScrollView(
+                      padding: EdgeInsets.zero,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox.square(
+                            dimension: SizeConfig.blockSizeHorizontal * 90,
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(radiusL),
+                                  child: ImageNetworkViewer(
+                                      imageUrl: controller.nftDetailModel.itemDetail!.imageUrl!),
+                                ),
+                                Positioned(
+                                  right: 10,
+                                  top: 20,
+                                  child: GlassWidget(
+                                    sigma: 18,
+                                    radius: 10,
+                                    padding: paddingS,
+                                    widget: Padding(
+                                      padding: const EdgeInsets.all(paddingS),
+                                      child: Text(
+                                        controller.nftDetailModel.itemDetail!.rareType!,
+                                        style: s14w400Dark(context).copyWith(
+                                          fontSize: SizeConfig.width * .05,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(height: SizeConfig.height * .03),
-                        _TopInfoCard(itemDetail: controller.nftDetailModel.itemDetail!),
-                        SizedBox(height: SizeConfig.height * .03),
-                        _RarirtyProperties(
-                            rarirtyList: controller.nftDetailModel.itemDetail!.rarirty!),
-                        SizedBox(height: SizeConfig.height * .2),
-                      ],
+                          SizedBox(height: SizeConfig.height * .03),
+                          _TopInfoCard(itemDetail: controller.nftDetailModel.itemDetail!),
+                          SizedBox(height: SizeConfig.height * .03),
+                          _RarirtyProperties(
+                              rarirtyList: controller.nftDetailModel.itemDetail!.rarirty!),
+                          SizedBox(height: SizeConfig.height * .2),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: _BottomButtons(
-                  buyPrice: 10,
-                  buyOnTap: () {},
-                  placeAbidOnTap: () {},
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: _BottomButtons(
+                    buyPrice: 10,
+                    buyOnTap: () {},
+                    placeAbidOnTap: () {},
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
-      }),
+              ],
+            ),
+          );
+        }),
+      ),
     );
   }
 }
