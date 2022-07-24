@@ -26,7 +26,8 @@ class _RarirtyProperties extends StatelessWidget {
             return Container(
               padding: const EdgeInsets.all(paddingM),
               decoration: BoxDecoration(
-                  border: Border.all(color: lightGrey),
+                  color: lightGrey.withOpacity(0.1 / 3),
+                  border: Border.all(color: lightGrey.withOpacity(0.1 / 3)),
                   borderRadius: const BorderRadius.all(Radius.circular(radiusM))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

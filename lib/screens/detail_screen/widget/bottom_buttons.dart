@@ -10,7 +10,7 @@ class _BottomButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeConfig.height * .15,
+      height: SizeConfig.height * .12,
       child: GlassWidget(
           sigma: 14,
           radius: 0,
