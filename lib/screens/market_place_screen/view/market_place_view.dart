@@ -14,6 +14,7 @@ import 'package:nft_tool_app/app/init/size_config.dart';
 import 'package:nft_tool_app/app/model/enums/general_enums.dart';
 import 'package:nft_tool_app/app/theme/colors/colors.dart';
 import 'package:nft_tool_app/app/theme/text_and_style/market/market_styles.dart';
+import 'package:nft_tool_app/screens/auth/otp_screen/otp_screen.dart';
 import 'package:nft_tool_app/screens/market_place_screen/controller/market_place_controller.dart';
 
 part '../widget/select_tab.dart';
@@ -72,7 +73,8 @@ class MarketPlaceView extends GetView<MarketPlaceController> {
                   index: controller.selectedTab.value,
                   children: const [
                     _NftsView(),
-                    _CollectionsView(),
+                    //  _CollectionsView(),
+                    OtpScreen(),
                     _UsersView(),
                   ],
                 ),
