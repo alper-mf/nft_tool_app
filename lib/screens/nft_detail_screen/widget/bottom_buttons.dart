@@ -13,7 +13,7 @@ class _BottomButtons extends StatelessWidget {
       height: SizeConfig.height * .12,
       child: GlassWidget(
           sigma: 14,
-          radius: 0,
+          radius: radiusS,
           padding: paddingXL,
           widget: Row(
             children: [

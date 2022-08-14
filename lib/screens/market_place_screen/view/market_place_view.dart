@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:nft_tool_app/app/components/appbar/global_app_bar.dart';
@@ -16,6 +17,7 @@ import 'package:nft_tool_app/app/theme/text_and_style/market/market_styles.dart'
 import 'package:nft_tool_app/screens/market_place_screen/controller/market_place_controller.dart';
 
 part '../widget/select_tab.dart';
+part '../widget/search_and_filter.dart';
 part './nfts_view.dart';
 part './collections_view.dart';
 part './users_view.dart';
@@ -44,41 +46,35 @@ class MarketPlaceView extends GetView<MarketPlaceController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// Searchbar ve Filter Button
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                      flex: 4,
-                      child: SearchBarWidget(
-                          textEditingController: controller.searchBarTextEditingController,
-                          hintText: controller.selectHintText().value)),
-                  SizedBox(width: SizeConfig.width * .03),
-                  CRoundedButton(
-                    kHeight: sizeXXXL,
-                    kWidth: sizeXXXL,
-                    borderRadius: radiusM,
-                    widget: SvgPicture.asset(
-                      filtersIcon,
-                      color: defaultWhiteColor,
-                    ),
-                    color: defaultWhiteColor.withOpacity((0.1 / 2)),
-                    onTap: () {},
-                  ),
-                ],
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 250),
+                child: controller.isScrolled == false
+                    ? Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SearchAndFilterButton(
+                            textEditingController: controller.searchBarTextEditingController,
+                            hintText: controller.selectHintText().value,
+                          ),
+                          SizedBox(height: SizeConfig.height * .02),
+                        ],
+                      )
+                    : const SizedBox(),
               ),
-              SizedBox(height: SizeConfig.height * .03),
 
               ///Sekmelerin bulunduğu widget
               const _Tabs(),
-              SizedBox(height: SizeConfig.height * .02),
+              SizedBox(height: SizeConfig.height * .01),
 
               ///Sekmelerin sayfalarının bulunduğu widget
               Expanded(
                 child: AnimatedIndexedStack(
                   index: controller.selectedTab.value,
-                  children: const [_NftsView(), _CollectionsView(), _UsersView()],
+                  children: const [
+                    _NftsView(),
+                    _CollectionsView(),
+                    _UsersView(),
+                  ],
                 ),
               )
             ],

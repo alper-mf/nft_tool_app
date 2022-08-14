@@ -53,7 +53,7 @@ class NftDetailView extends GetView<NftDetailController> {
                   height: SizeConfig.height,
                   width: SizeConfig.width,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: paddingXL, right: paddingXL),
+                    padding: const EdgeInsets.only(left: paddingS, right: paddingXS),
                     child: SingleChildScrollView(
                       padding: EdgeInsets.zero,
                       child: Column(
@@ -70,11 +70,11 @@ class NftDetailView extends GetView<NftDetailController> {
                                       imageUrl: controller.nftDetailModel.itemDetail!.imageUrl!),
                                 ),
                                 Positioned(
-                                  right: 10,
-                                  top: 20,
+                                  right: sizeS,
+                                  top: sizeL,
                                   child: GlassWidget(
-                                    sigma: 18,
-                                    radius: 10,
+                                    sigma: sizeL - 2,
+                                    radius: radiusXS,
                                     padding: paddingS,
                                     widget: Padding(
                                       padding: const EdgeInsets.all(paddingS),

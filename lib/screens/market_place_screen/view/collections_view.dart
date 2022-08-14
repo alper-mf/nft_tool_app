@@ -1,4 +1,4 @@
-part of '../view/market_place_view.dart';
+part of 'market_place_view.dart';
 
 class _CollectionsView extends StatelessWidget {
   const _CollectionsView({Key? key}) : super(key: key);

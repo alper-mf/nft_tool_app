@@ -1,4 +1,4 @@
-part of '../view/market_place_view.dart';
+part of 'market_place_view.dart';
 
 class _NftsView extends GetView<MarketPlaceController> {
   const _NftsView({Key? key}) : super(key: key);
@@ -9,25 +9,38 @@ class _NftsView extends GetView<MarketPlaceController> {
     return SizedBox(
         height: SizeConfig.height,
         width: SizeConfig.width,
-        child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                childAspectRatio: SizeConfig.height * (.01 / 2.8) / 5),
-            itemCount: 12,
-            itemBuilder: (context, index) {
-              return _NftCard(
-                url: text,
-                nftName: 'Azuki #2027',
-                owner: 'Azuki',
-                priceType: 'ETH',
-                price: 0.02,
-                highestBid: 0.03,
-                nftId: 1,
-                onTap: (i) => controller.onTapNft(1),
-              );
-            }));
+        child: NotificationListener<UserScrollNotification>(
+          onNotification: (notification) {
+            if (notification.direction == ScrollDirection.forward) {
+              controller.isScrolled = false;
+            }
+
+            if (notification.direction == ScrollDirection.reverse) {
+              controller.isScrolled = true;
+            }
+
+            return true;
+          },
+          child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: SizeConfig.height * (.01 / 2.8) / 5),
+              itemCount: 12,
+              itemBuilder: (context, index) {
+                return _NftCard(
+                  url: text,
+                  nftName: 'Azuki #2027',
+                  owner: 'Azuki',
+                  priceType: 'ETH',
+                  price: 0.02,
+                  highestBid: 0.03,
+                  nftId: 1,
+                  onTap: (i) => controller.onTapNft(1),
+                );
+              }),
+        ));
   }
 }
 

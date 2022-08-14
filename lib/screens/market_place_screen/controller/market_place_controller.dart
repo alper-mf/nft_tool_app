@@ -2,28 +2,32 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:nft_tool_app/app/dialogs/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:nft_tool_app/app/dialogs/loading/loading_progress.dart';
 import 'package:nft_tool_app/app/model/enums/general_enums.dart';
-import 'package:nft_tool_app/app/navigation/pages.dart';
 import 'package:nft_tool_app/screens/nft_detail_screen/detail_screen.dart';
 
-class MarketPlaceController extends GetxController {
+class MarketPlaceController extends GetxController with GetTickerProviderStateMixin {
   final GlobalKey scaffoldKey = GlobalKey<ScaffoldState>();
   late Rx<LoadingStatus> _loadingStatus;
   final RxInt selectedTab = 0.obs;
+  late final RxBool _isScrolled;
 
   late TextEditingController searchBarTextEditingController;
 
   MarketPlaceController() {
+    _isScrolled = false.obs;
     _loadingStatus = LoadingStatus.init.obs;
     searchBarTextEditingController = TextEditingController();
   }
 
-  //Loading Status Controller
+  //Loading Status Get And Set Controller
   LoadingStatus get loadingStatus => _loadingStatus.value;
   set loadingStatus(LoadingStatus value) => _loadingStatus.value = value;
+
+  //Is Scrolled Get And Set Controller
+  bool get isScrolled => _isScrolled.value;
+  set isScrolled(bool val) => _isScrolled.value = val;
 
   //Current Context
   BuildContext get context => scaffoldKey.currentContext!;
